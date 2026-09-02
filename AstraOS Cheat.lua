@@ -1,5 +1,5 @@
 --[================================================================]--
---  AstraOS Suite - Mobil Uyumlu Güncellenmiş Sürüm (Mobile Support + Whitelist)
+--  AstraOS FPS Game Cheat
 --[================================================================]--
 
 local Players = game:GetService("Players")
@@ -13,9 +13,7 @@ local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 
 --------------------------------------------------------------------------------
--- [ YENİ ] WHITELIST (BEYAZ LİSTE) AYARLARI
--- Aim almasını istemediğin oyuncuların kullanıcı adlarını (Username) buraya ekle.
--- Örnek: {"KullaniciAdi1", "KullaniciAdi2"}
+-- WHITELIST (BEYAZ LİSTE) AYARLARI
 --------------------------------------------------------------------------------
 local WhitelistPlayers = {
     "ArkadasininAdi1",
@@ -67,7 +65,129 @@ if not ScreenGui.Parent then
     ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 end
 
--- KEY SISTEMI EKRANI
+-- MOBIL ARAYÜZ ELEMANLARI
+local MobileScreenGui = Instance.new("ScreenGui")
+MobileScreenGui.Name = "AstraOS_MobileOverlay"
+MobileScreenGui.ResetOnSpawn = false
+pcall(function()
+    MobileScreenGui.Parent = CoreGui
+end)
+if not MobileScreenGui.Parent then
+    MobileScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+end
+
+-- ÇİZİMLERİ VE ARAYÜZÜ TAMAMEN KAPATMA (UNLOAD - GÜNCELLENDİ)
+local activeDrawings = {}
+local activeTracers = {}
+local fovCircleRage = Drawing.new("Circle")
+local fovCircleLegit = Drawing.new("Circle")
+local isScriptLoaded = true -- Unload kontrol bayrağı
+
+local function unloadScript()
+    isScriptLoaded = false -- Tüm arka plan döngülerini ve render bağlantılarını durdurur
+    
+    pcall(function() fovCircleRage:Remove() end)
+    pcall(function() fovCircleLegit:Remove() end)
+    
+    for _, drawings in pairs(activeDrawings) do
+        pcall(function()
+            drawings.Box:Remove()
+            drawings.Name:Remove()
+            drawings.Dist:Remove()
+        end)
+    end
+    
+    for _, line in pairs(activeTracers) do
+        pcall(function() line:Remove() end)
+    end
+    
+    -- Chams, Highlight ve Hitbox düzeltmelerini temizle
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Character then
+            pcall(function()
+                local hlLegit = player.Character:FindFirstChild("LegitHighlight")
+                if hlLegit then hlLegit:Destroy() end
+                
+                local hlRage = player.Character:FindFirstChild("AstraRageHighlight")
+                if hlRage then hlRage:Destroy() end
+                
+                local head = player.Character:FindFirstChild("Head")
+                if head then
+                    head.Size = Vector3.new(2, 1, 1)
+                    head.Transparency = 0
+                end
+            end)
+        end
+    end
+
+    pcall(function() ScreenGui:Destroy() end)
+    pcall(function() MobileScreenGui:Destroy() end)
+end
+
+-- GÜNCELLEME GÜNLÜKLERİ EKRANI (EN BAŞTA GELEN MENÜ)
+local UpdateLogScreen = Instance.new("Frame")
+UpdateLogScreen.Size = UDim2.new(0, 340, 0, 220)
+UpdateLogScreen.Position = UDim2.new(0.5, -170, 0.5, -110)
+UpdateLogScreen.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+UpdateLogScreen.BorderSizePixel = 0
+UpdateLogScreen.Active = true
+UpdateLogScreen.Draggable = true
+UpdateLogScreen.Parent = ScreenGui
+
+local UpdateCorner = Instance.new("UICorner")
+UpdateCorner.CornerRadius = UDim.new(0, 14)
+UpdateCorner.Parent = UpdateLogScreen
+
+local UpdateStroke = Instance.new("UIStroke")
+UpdateStroke.Color = Color3.fromRGB(80, 120, 255)
+UpdateStroke.Thickness = 1.8
+UpdateStroke.Parent = UpdateLogScreen
+
+local UpdateTitle = Instance.new("TextLabel")
+UpdateTitle.Size = UDim2.new(1, 0, 0, 40)
+UpdateTitle.Position = UDim2.new(0, 0, 0, 15)
+UpdateTitle.BackgroundTransparency = 1
+UpdateTitle.Text = "Güncelleme Günlükleri"
+UpdateTitle.TextColor3 = Color3.fromRGB(220, 220, 255)
+UpdateTitle.TextSize = 14
+UpdateTitle.Font = Enum.Font.GothamBold
+UpdateTitle.Parent = UpdateLogScreen
+
+local UpdateDesc = Instance.new("TextLabel")
+UpdateDesc.Size = UDim2.new(1, -40, 0, 90)
+UpdateDesc.Position = UDim2.new(0, 20, 0, 60)
+UpdateDesc.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+UpdateDesc.BorderSizePixel = 0
+UpdateDesc.Text = "[ + ] Misc Sekmesi Eklendi\n" ..
+                "[ + ] Whitelist Eklendi\n" ..
+                "[ + ] Unload Script Eklendi\n" ..
+                "[ + ] Rage-Legit Arasında Geçiş Eklendi"
+UpdateDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+UpdateDesc.TextSize = 12
+UpdateDesc.Font = Enum.Font.GothamMedium
+UpdateDesc.TextWrapped = true
+UpdateDesc.Parent = UpdateLogScreen
+
+local UpdateDescCorner = Instance.new("UICorner")
+UpdateDescCorner.CornerRadius = UDim.new(0, 8)
+UpdateDescCorner.Parent = UpdateDesc
+
+local UpdateNextBtn = Instance.new("TextButton")
+UpdateNextBtn.Size = UDim2.new(1, -40, 0, 38)
+UpdateNextBtn.Position = UDim2.new(0, 20, 0, 165)
+UpdateNextBtn.BackgroundColor3 = Color3.fromRGB(40, 120, 60)
+UpdateNextBtn.BorderSizePixel = 0
+UpdateNextBtn.Text = "Devam Et"
+UpdateNextBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+UpdateNextBtn.TextSize = 12
+UpdateNextBtn.Font = Enum.Font.GothamBold
+UpdateNextBtn.Parent = UpdateLogScreen
+
+local UpdateNextCorner = Instance.new("UICorner")
+UpdateNextCorner.CornerRadius = UDim.new(0, 8)
+UpdateNextCorner.Parent = UpdateNextBtn
+
+-- KEY SISTEMI EKRANI (Başta Gizli, Güncelleme Günlükleri geçilince açılacak)
 local KeyScreen = Instance.new("Frame")
 KeyScreen.Size = UDim2.new(0, 320, 0, 200)
 KeyScreen.Position = UDim2.new(0.5, -160, 0.5, -100)
@@ -75,6 +195,7 @@ KeyScreen.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
 KeyScreen.BorderSizePixel = 0
 KeyScreen.Active = true
 KeyScreen.Draggable = true
+KeyScreen.Visible = false
 KeyScreen.Parent = ScreenGui
 
 local KeyCorner = Instance.new("UICorner")
@@ -101,7 +222,7 @@ KeyBox.Size = UDim2.new(1, -40, 0, 40)
 KeyBox.Position = UDim2.new(0, 20, 0, 65)
 KeyBox.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
 KeyBox.BorderSizePixel = 0
-KeyBox.PlaceholderText = "Key'i buraya girin (AstraRage)"
+KeyBox.PlaceholderText = "Hile Keyini Girin (YT BAK)"
 KeyBox.PlaceholderColor3 = Color3.fromRGB(110, 110, 140)
 KeyBox.Text = ""
 KeyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -325,21 +446,10 @@ local shootCooldown = 0.04
 local selectedMode = nil
 local toggleReferences = {}
 
--- MOBIL KONTROL DURUMLARI (Button States)
+-- MOBIL KONTROL DURUMLARI
 local mobileAimToggled = false
 
--- MOBIL ARAYÜZ ELEMANLARI (Floating Buttons for Mobile)
-local MobileScreenGui = Instance.new("ScreenGui")
-MobileScreenGui.Name = "AstraOS_MobileOverlay"
-MobileScreenGui.ResetOnSpawn = false
-pcall(function()
-    MobileScreenGui.Parent = CoreGui
-end)
-if not MobileScreenGui.Parent then
-    MobileScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
-end
-
--- 1. Menü Aç/Kapat Butonu
+-- Menü Aç/Kapat Butonu
 local ToggleMenuMobBtn = Instance.new("TextButton")
 ToggleMenuMobBtn.Size = UDim2.new(0, 55, 0, 55)
 ToggleMenuMobBtn.Position = UDim2.new(0, 20, 0.4, 0)
@@ -362,7 +472,7 @@ MobMenuStroke.Color = Color3.fromRGB(150, 40, 40)
 MobMenuStroke.Thickness = 2
 MobMenuStroke.Parent = ToggleMenuMobBtn
 
--- 2. Otomatik Aim / Hedef Alma Butonu (Rage / Legit için dinamik)
+-- Otomatik Aim / Hedef Alma Butonu
 local AimMobBtn = Instance.new("TextButton")
 AimMobBtn.Size = UDim2.new(0, 65, 0, 65)
 AimMobBtn.Position = UDim2.new(1, -85, 0.5, -30)
@@ -374,7 +484,7 @@ AimMobBtn.TextSize = 9
 AimMobBtn.Font = Enum.Font.GothamBold
 AimMobBtn.Active = true
 AimMobBtn.Draggable = true
-AimMobBtn.Visible = false -- Mod seçildikten sonra aktif olacak
+AimMobBtn.Visible = false
 AimMobBtn.Parent = MobileScreenGui
 
 local MobAimCorner = Instance.new("UICorner")
@@ -386,8 +496,7 @@ MobAimStroke.Color = Color3.fromRGB(255, 90, 90)
 MobAimStroke.Thickness = 2
 MobAimStroke.Parent = AimMobBtn
 
--- FOV Çemberleri
-local fovCircleRage = Drawing.new("Circle")
+-- FOV Çemberleri Özellikleri
 fovCircleRage.Visible = false
 fovCircleRage.Transparency = 0.6
 fovCircleRage.Color = Color3.fromRGB(255, 50, 50)
@@ -396,7 +505,6 @@ fovCircleRage.NumSides = 32
 fovCircleRage.Radius = settingsRage.FOVRadius
 fovCircleRage.Filled = false
 
-local fovCircleLegit = Drawing.new("Circle")
 fovCircleLegit.Visible = false
 fovCircleLegit.Transparency = 0.4
 fovCircleLegit.Color = Color3.fromRGB(50, 120, 255)
@@ -405,9 +513,53 @@ fovCircleLegit.NumSides = 32
 fovCircleLegit.Radius = settingsLegit.FOVRadius
 fovCircleLegit.Filled = false
 
--- Tracer Çizgileri
-local activeTracers = {}
+-- ESP ve Bilgi Çizimleri (Box, Name, Distance)
+local function createDrawings(player)
+    if activeDrawings[player] then return end
+    
+    local box = Drawing.new("Square")
+    box.Visible = false
+    box.Color = Color3.fromRGB(255, 50, 50)
+    box.Thickness = 1.5
+    box.Filled = false
+    
+    local nameText = Drawing.new("Text")
+    nameText.Visible = false
+    nameText.Color = Color3.fromRGB(255, 255, 255)
+    nameText.Size = 13
+    nameText.Center = true
+    nameText.Outline = true
+    
+    local distText = Drawing.new("Text")
+    distText.Visible = false
+    distText.Color = Color3.fromRGB(200, 200, 200)
+    distText.Size = 12
+    distText.Center = true
+    distText.Outline = true
 
+    activeDrawings[player] = {Box = box, Name = nameText, Dist = distText}
+end
+
+local function removeDrawings(player)
+    if activeDrawings[player] then
+        pcall(function()
+            activeDrawings[player].Box:Remove()
+            activeDrawings[player].Name:Remove()
+            activeDrawings[player].Dist:Remove()
+        end)
+        activeDrawings[player] = nil
+    end
+end
+
+for _, p in ipairs(Players:GetPlayers()) do
+    if p ~= LocalPlayer then createDrawings(p) end
+end
+Players.PlayerAdded:Connect(function(p)
+    if p ~= LocalPlayer then createDrawings(p) end
+end)
+Players.PlayerRemoving:Connect(removeDrawings)
+
+-- Tracer Çizgileri
 local function createTracer(player)
     if activeTracers[player] then return end
     local line = Drawing.new("Line")
@@ -445,7 +597,9 @@ local function monitorPlayerDeath(player)
         local humanoid = char:WaitForChild("Humanoid", 5)
         if humanoid then
             humanoid.Died:Connect(function()
-                pcall(function() killSound:Play() end)
+                if isScriptLoaded then
+                    pcall(function() killSound:Play() end)
+                end
             end)
         end
     end
@@ -468,7 +622,6 @@ UserInputService.InputEnded:Connect(function(input)
     elseif input.UserInputType == Enum.UserInputType.MouseButton1 then leftMouseDown = false end
 end)
 
--- Mobil Menü Açma/Kapatma Buton İşlevi
 ToggleMenuMobBtn.MouseButton1Click:Connect(function()
     if selectedMode == "Legit" then
         MainFrameLegit.Visible = not MainFrameLegit.Visible
@@ -477,7 +630,6 @@ ToggleMenuMobBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- Mobil Aim Butonu İşlevi (Aç/Kapat Toggle)
 AimMobBtn.MouseButton1Click:Connect(function()
     mobileAimToggled = not mobileAimToggled
     if mobileAimToggled then
@@ -491,19 +643,22 @@ AimMobBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- Key Onaylama
+UpdateNextBtn.MouseButton1Click:Connect(function()
+    UpdateLogScreen:Destroy()
+    KeyScreen.Visible = true
+end)
+
 LoginBtn.MouseButton1Click:Connect(function()
-    if KeyBox.Text == "AstraRage" then
+    if KeyBox.Text == "OS BEST" then
         KeyScreen:Destroy()
         ModeScreen.Visible = true
     else
-        StatusLabel.Text = "Geçersiz Key! Doğru Key: AstraRage"
+        StatusLabel.Text = "Geçersiz Key!"
         task.wait(2)
         StatusLabel.Text = ""
     end
 end)
 
--- Mod Seçim Butonları
 LegitSelectBtn.MouseButton1Click:Connect(function()
     selectedMode = "Legit"
     ModeScreen:Destroy()
@@ -585,6 +740,213 @@ function startLoadingAndBuildUI(isRage)
         PercentLabel.Text = "%80 - Arayüz yerleştiriliyor..."
         task.wait(0.2)
 
+        -- WHITELIST PANELİ OLUŞTURUCU FONKSİYON
+        local function createWhitelistPanel(parentPage)
+            local Card = Instance.new("Frame")
+            Card.Size = UDim2.new(1, -6, 0, 110)
+            Card.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+            Card.BorderSizePixel = 0
+            Card.Parent = parentPage
+
+            local CardCorner = Instance.new("UICorner")
+            CardCorner.CornerRadius = UDim.new(0, 8)
+            CardCorner.Parent = Card
+
+            local Label = Instance.new("TextLabel")
+            Label.Size = UDim2.new(1, -20, 0, 25)
+            Label.Position = UDim2.new(0, 12, 0, 5)
+            Label.BackgroundTransparency = 1
+            Label.Text = "🛡️ Whitelist Yönetimi (Kullanıcı Adı Ekle)"
+            Label.TextColor3 = Color3.fromRGB(210, 210, 230)
+            Label.TextSize = 11
+            Label.Font = Enum.Font.GothamBold
+            Label.TextXAlignment = Enum.TextXAlignment.Left
+            Label.Parent = Card
+
+            local WlBox = Instance.new("TextBox")
+            WlBox.Size = UDim2.new(1, -24, 0, 32)
+            WlBox.Position = UDim2.new(0, 12, 0, 32)
+            WlBox.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+            WlBox.BorderSizePixel = 0
+            WlBox.PlaceholderText = "Eklenecek Oyuncu Adı..."
+            WlBox.PlaceholderColor3 = Color3.fromRGB(110, 110, 140)
+            WlBox.Text = ""
+            WlBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            WlBox.TextSize = 11
+            WlBox.Font = Enum.Font.GothamMedium
+            WlBox.Parent = Card
+
+            local BoxCorner = Instance.new("UICorner")
+            BoxCorner.CornerRadius = UDim.new(0, 6)
+            BoxCorner.Parent = WlBox
+
+            local AddBtn = Instance.new("TextButton")
+            AddBtn.Size = UDim2.new(0.48, 0, 0, 30)
+            AddBtn.Position = UDim2.new(0, 12, 0, 70)
+            AddBtn.BackgroundColor3 = Color3.fromRGB(40, 120, 60)
+            AddBtn.BorderSizePixel = 0
+            AddBtn.Text = "Listeye Ekle"
+            AddBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            AddBtn.TextSize = 10
+            AddBtn.Font = Enum.Font.GothamBold
+            AddBtn.Parent = Card
+
+            local AddCorner = Instance.new("UICorner")
+            AddCorner.CornerRadius = UDim.new(0, 6)
+            AddCorner.Parent = AddBtn
+
+            local RemoveBtn = Instance.new("TextButton")
+            RemoveBtn.Size = UDim2.new(0.48, 0, 0, 30)
+            RemoveBtn.Position = UDim2.new(0.51, 0, 0, 70)
+            RemoveBtn.BackgroundColor3 = Color3.fromRGB(140, 40, 40)
+            RemoveBtn.BorderSizePixel = 0
+            RemoveBtn.Text = "Listeden Çıkar"
+            RemoveBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            RemoveBtn.TextSize = 10
+            RemoveBtn.Font = Enum.Font.GothamBold
+            RemoveBtn.Parent = Card
+
+            local RemCorner = Instance.new("UICorner")
+            RemCorner.CornerRadius = UDim.new(0, 6)
+            RemCorner.Parent = RemoveBtn
+
+            AddBtn.MouseButton1Click:Connect(function()
+                local name = WlBox.Text
+                if name ~= "" then
+                    local found = false
+                    for _, v in ipairs(WhitelistPlayers) do
+                        if string.lower(v) == string.lower(name) then found = true end
+                    end
+                    if not found then
+                        table.insert(WhitelistPlayers, name)
+                        WlBox.Text = "Eklendi: " .. name
+                        task.wait(1.5)
+                        WlBox.Text = ""
+                    else
+                        WlBox.Text = "Zaten listede var!"
+                        task.wait(1.5)
+                        WlBox.Text = ""
+                    end
+                end
+            end)
+
+            RemoveBtn.MouseButton1Click:Connect(function()
+                local name = WlBox.Text
+                if name ~= "" then
+                    for i, v in ipairs(WhitelistPlayers) do
+                        if string.lower(v) == string.lower(name) then
+                            table.remove(WhitelistPlayers, i)
+                            WlBox.Text = "Çıkarıldı: " .. name
+                            task.wait(1.5)
+                            WlBox.Text = ""
+                            return
+                        end
+                    end
+                    WlBox.Text = "Listede bulunamadı!"
+                    task.wait(1.5)
+                    WlBox.Text = ""
+                end
+            end)
+        end
+
+        -- MOD DEĞİŞTİRME PANELİ
+        local function createModeSwitchPanel(parentPage)
+            local Card = Instance.new("Frame")
+            Card.Size = UDim2.new(1, -6, 0, 85)
+            Card.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+            Card.BorderSizePixel = 0
+            Card.Parent = parentPage
+
+            local CardCorner = Instance.new("UICorner")
+            CardCorner.CornerRadius = UDim.new(0, 8)
+            CardCorner.Parent = Card
+
+            local Label = Instance.new("TextLabel")
+            Label.Size = UDim2.new(1, -20, 0, 20)
+            Label.Position = UDim2.new(0, 12, 0, 6)
+            Label.BackgroundTransparency = 1
+            Label.Text = "🔄 Mod Değiştirici"
+            Label.TextColor3 = Color3.fromRGB(210, 210, 230)
+            Label.TextSize = 11
+            Label.Font = Enum.Font.GothamBold
+            Label.TextXAlignment = Enum.TextXAlignment.Left
+            Label.Parent = Card
+
+            local SwitchBtn = Instance.new("TextButton")
+            SwitchBtn.Size = UDim2.new(1, -24, 0, 32)
+            SwitchBtn.Position = UDim2.new(0, 12, 0, 32)
+            SwitchBtn.BackgroundColor3 = selectedMode == "Rage" and Color3.fromRGB(30, 80, 160) or Color3.fromRGB(140, 30, 30)
+            SwitchBtn.BorderSizePixel = 0
+            SwitchBtn.Text = selectedMode == "Rage" and "🛡️ Legit Menüye Geç (Rage'i Kapat)" or "🔥 Rage Menüye Geç (Legit'i Kapat)"
+            SwitchBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            SwitchBtn.TextSize = 10
+            SwitchBtn.Font = Enum.Font.GothamBold
+            SwitchBtn.Parent = Card
+
+            local SwitchCorner = Instance.new("UICorner")
+            SwitchCorner.CornerRadius = UDim.new(0, 6)
+            SwitchCorner.Parent = SwitchBtn
+
+            SwitchBtn.MouseButton1Click:Connect(function()
+                if selectedMode == "Rage" then
+                    selectedMode = "Legit"
+                    MainFrameRage.Visible = false
+                    AimMobBtn.BackgroundColor3 = Color3.fromRGB(30, 80, 160)
+                    MobAimStroke.Color = Color3.fromRGB(90, 150, 255)
+                    startLoadingAndBuildUI(false)
+                else
+                    selectedMode = "Rage"
+                    MainFrameLegit.Visible = false
+                    AimMobBtn.BackgroundColor3 = Color3.fromRGB(120, 30, 30)
+                    MobAimStroke.Color = Color3.fromRGB(255, 90, 90)
+                    startLoadingAndBuildUI(true)
+                end
+            end)
+        end
+
+        -- UNLOAD PANELİ OLUŞTURUCU FONKSİYON
+        local function createUnloadPanel(parentPage)
+            local Card = Instance.new("Frame")
+            Card.Size = UDim2.new(1, -6, 0, 65)
+            Card.BackgroundColor3 = Color3.fromRGB(22, 22, 30)
+            Card.BorderSizePixel = 0
+            Card.Parent = parentPage
+
+            local CardCorner = Instance.new("UICorner")
+            CardCorner.CornerRadius = UDim.new(0, 8)
+            CardCorner.Parent = Card
+
+            local Label = Instance.new("TextLabel")
+            Label.Size = UDim2.new(1, -20, 0, 20)
+            Label.Position = UDim2.new(0, 12, 0, 6)
+            Label.BackgroundTransparency = 1
+            Label.Text = "⚠️ Script Kontrolü"
+            Label.TextColor3 = Color3.fromRGB(210, 210, 230)
+            Label.TextSize = 11
+            Label.Font = Enum.Font.GothamBold
+            Label.TextXAlignment = Enum.TextXAlignment.Left
+            Label.Parent = Card
+
+            local UnloadBtn = Instance.new("TextButton")
+            UnloadBtn.Size = UDim2.new(1, -24, 0, 28)
+            UnloadBtn.Position = UDim2.new(0, 12, 0, 28)
+            UnloadBtn.BackgroundColor3 = Color3.fromRGB(160, 40, 40)
+            UnloadBtn.BorderSizePixel = 0
+            UnloadBtn.Text = "Scripti Tamamen Kapat (Unload)"
+            UnloadBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            UnloadBtn.TextSize = 11
+            UnloadBtn.Font = Enum.Font.GothamBold
+            UnloadBtn.Parent = Card
+
+            local UnloadCorner = Instance.new("UICorner")
+            UnloadCorner.CornerRadius = UDim.new(0, 6)
+            UnloadCorner.Parent = UnloadBtn
+
+            UnloadBtn.MouseButton1Click:Connect(function()
+                unloadScript()
+            end)
+        end
+
         if not isRage then
             -- LEGIT MENÜ İÇERİĞİ
             local Sidebar = Instance.new("Frame")
@@ -617,7 +979,7 @@ function startLoadingAndBuildUI(isRage)
                 sf.Size = UDim2.new(1, 0, 1, 0)
                 sf.BackgroundTransparency = 1
                 sf.BorderSizePixel = 0
-                sf.CanvasSize = UDim2.new(0, 0, 0, 450)
+                sf.CanvasSize = UDim2.new(0, 0, 0, 550)
                 sf.ScrollBarThickness = 3
                 sf.ScrollBarImageColor3 = Color3.fromRGB(40, 90, 180)
                 sf.Visible = (key == "Legit")
@@ -634,6 +996,7 @@ function startLoadingAndBuildUI(isRage)
 
             local legitPage = createLegitTabContent("Legit")
             local legitVisualsPage = createLegitTabContent("Visuals")
+            local legitMiscPage = createLegitTabContent("Misc")
 
             local function createLegitTabButton(name, key)
                 local btn = Instance.new("TextButton")
@@ -666,6 +1029,7 @@ function startLoadingAndBuildUI(isRage)
 
             createLegitTabButton("🛡️ Legit", "Legit")
             createLegitTabButton("👁️ Visuals", "Visuals")
+            createLegitTabButton("⚙️ Misc", "Misc")
 
             local function createLegitToggle(parentPage, name, settingKey)
                 local Card = Instance.new("Frame")
@@ -793,6 +1157,10 @@ function startLoadingAndBuildUI(isRage)
             createLegitToggle(legitVisualsPage, "Distance ESP (Mesafe)", "DistanceESP")
             createLegitToggle(legitVisualsPage, "Chams (Model Aydınlatma)", "Chams")
 
+            createModeSwitchPanel(legitMiscPage)
+            createWhitelistPanel(legitMiscPage)
+            createUnloadPanel(legitMiscPage)
+
         else
             -- RAGE MENÜ İÇERİĞİ
             local Sidebar = Instance.new("Frame")
@@ -825,7 +1193,7 @@ function startLoadingAndBuildUI(isRage)
                 sf.Size = UDim2.new(1, 0, 1, 0)
                 sf.BackgroundTransparency = 1
                 sf.BorderSizePixel = 0
-                sf.CanvasSize = UDim2.new(0, 0, 0, 560)
+                sf.CanvasSize = UDim2.new(0, 0, 0, 680)
                 sf.ScrollBarThickness = 3
                 sf.ScrollBarImageColor3 = Color3.fromRGB(120, 40, 40)
                 sf.Visible = (key == "Rage")
@@ -843,6 +1211,7 @@ function startLoadingAndBuildUI(isRage)
             local ragePage = createTabContent("Rage")
             local visualsPage = createTabContent("Visuals")
             local movementPage = createTabContent("Movement")
+            local miscPage = createTabContent("Misc")
 
             local function createTabButton(name, key)
                 local btn = Instance.new("TextButton")
@@ -876,6 +1245,7 @@ function startLoadingAndBuildUI(isRage)
             createTabButton("🔥 Rage", "Rage")
             createTabButton("👁️ Visuals", "Visuals")
             createTabButton("🏃 Movement", "Movement")
+            createTabButton("⚙️ Misc", "Misc")
 
             local function createAbilityToggle(parentPage, name, settingKey)
                 local Card = Instance.new("Frame")
@@ -1020,6 +1390,10 @@ function startLoadingAndBuildUI(isRage)
             createAbilityToggle(movementPage, "Noclip (Duvar Geçme)", "Noclip")
             createAbilityToggle(movementPage, "Fly (Uçma Modu)", "Fly")
             createAbilityToggle(movementPage, "Spinbot (Hızlı Dönüş)", "Spinbot")
+
+            createModeSwitchPanel(miscPage)
+            createWhitelistPanel(miscPage)
+            createUnloadPanel(miscPage)
         end
 
         LoadBarFill.Size = UDim2.new(1, 0, 1, 0)
@@ -1051,14 +1425,13 @@ local function isVisible(targetPart, isLegit)
     return false
 end
 
--- EN YAKIN HEDEF BULUCU (LEGİT İÇİN SMOOTH)
+-- EN YAKIN HEDEF BULUCU (LEGIT)
 local function getLegitTarget()
     local bestTarget = nil
     local shortestDist = settingsLegit.FOVRadius
     local screenCenter = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
 
     for _, player in ipairs(Players:GetPlayers()) do
-        -- Whitelist kontrolü eklenmiştir
         if player ~= LocalPlayer and not isWhitelisted(player) and player.Character then
             local head = player.Character:FindFirstChild("Head")
             local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
@@ -1079,13 +1452,12 @@ local function getLegitTarget()
     return bestTarget
 end
 
--- EN YAKIN HEDEF (RAGE İÇİN)
+-- EN YAKIN HEDEF (RAGE)
 local function getRageTarget()
     local bestTarget = nil
     local shortestDist = settingsRage.FOVRadius
     local screenCenter = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
     for _, player in ipairs(Players:GetPlayers()) do
-        -- Whitelist kontrolü eklenmiştir
         if player ~= LocalPlayer and not isWhitelisted(player) and player.Character then
             local head = player.Character:FindFirstChild("Head")
             local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
@@ -1106,7 +1478,7 @@ local function getRageTarget()
     return bestTarget
 end
 
--- ATEŞ ETME FONKSİYONU (Rage için)
+-- ATEŞ ETME FONKSİYONU
 local function triggerShoot(targetHead)
     local currentTime = tick()
     if currentTime - lastShootTick < shootCooldown then return end
@@ -1131,8 +1503,10 @@ local function triggerShoot(targetHead)
     end
 end
 
--- ANA RENDER DÖNGÜSÜ (Optimizasyonlu & Mobil Uyumlu)
+-- ANA RENDER DÖNGÜSÜ
 RunService.RenderStepped:Connect(function()
+    if not isScriptLoaded then return end
+
     if selectedMode == "Legit" then
         if settingsLegit.FOVEnabled and settingsLegit.LegitFOVVisible then
             fovCircleLegit.Visible = true
@@ -1142,7 +1516,6 @@ RunService.RenderStepped:Connect(function()
             fovCircleLegit.Visible = false
         end
 
-        -- Smooth Legit Aim (PC'de sağ tık veya Mobilde Ekrandaki AIM Butonu basılı/açıkken)
         if (settingsLegit.LegitAim and rightMouseDown) or (mobileAimToggled and settingsLegit.LegitAim) then
             local target = getLegitTarget()
             if target then
@@ -1197,7 +1570,6 @@ RunService.RenderStepped:Connect(function()
 
         local targetHead = getRageTarget()
         if targetHead then
-            -- Rage Snapline / Lock (Mobilde ekran butonuna bağlı veya PC'de ayarlıysa)
             if settingsRage.RageLock and (mobileAimToggled or not UserInputService.TouchEnabled) then
                 Camera.CFrame = CFrame.lookAt(Camera.CFrame.Position, targetHead.Position)
             end
@@ -1208,10 +1580,12 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
--- ARKAPLAN GÖRSEL GÜNCELLEMELERİ (ESP, Tracers, Chams, Hitbox)
+-- ARKAPLAN GÖRSEL GÜNCELLEMELERİ VE ESP DÖNGÜSÜ
 task.spawn(function()
-    while true do
+    while isScriptLoaded do
         pcall(function()
+            if not isScriptLoaded then return end
+
             if selectedMode == "Legit" then
                 for _, player in ipairs(Players:GetPlayers()) do
                     if player ~= LocalPlayer and player.Character then
@@ -1232,7 +1606,6 @@ task.spawn(function()
                     end
                 end
             elseif selectedMode == "Rage" then
-                -- Hitbox Expander (Sunucu donmalarını engellemek için kullanıcı boyutu makul tutabilir)
                 for _, player in ipairs(Players:GetPlayers()) do
                     if player ~= LocalPlayer and player.Character then
                         local head = player.Character:FindFirstChild("Head")
@@ -1249,7 +1622,6 @@ task.spawn(function()
                     end
                 end
 
-                -- Chams / Highlight Yönetimi
                 for _, player in ipairs(Players:GetPlayers()) do
                     if player ~= LocalPlayer and player.Character then
                         local char = player.Character
@@ -1271,15 +1643,81 @@ task.spawn(function()
                 end
             end
 
-            -- Tracers Görsel Güncellemesi
+            -- ESP Box, Name ve Distance Güncellemeleri
+            for player, drawings in pairs(activeDrawings) do
+                local char = player.Character
+                local hrp = char and char:FindFirstChild("HumanoidRootPart")
+                local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+                
+                local boxActive = isScriptLoaded and ((selectedMode == "Legit" and settingsLegit.ESPBox) or (selectedMode == "Rage" and settingsRage.ESPBox))
+                local nameActive = isScriptLoaded and ((selectedMode == "Legit" and settingsLegit.NameESP) or (selectedMode == "Rage" and settingsRage.NameESP))
+                local distActive = isScriptLoaded and ((selectedMode == "Legit" and settingsLegit.DistanceESP) or (selectedMode == "Rage" and settingsRage.DistanceESP))
+
+                if hrp and humanoid and humanoid.Health > 0 and isScriptLoaded then
+                    local vector, onScreen = Camera:WorldToViewportPoint(hrp.Position)
+                    if onScreen then
+                        local head = char:FindFirstChild("Head")
+                        local leg = char:FindFirstChild("LeftFoot") or hrp
+                        
+                        if head and leg then
+                            local topPos = Camera:WorldToViewportPoint(head.Position + Vector3.new(0, 0.5, 0))
+                            local botPos = Camera:WorldToViewportPoint(leg.Position - Vector3.new(0, 2, 0))
+                            local height = math.abs(topPos.Y - botPos.Y)
+                            local width = height / 2
+
+                            -- Box Çizimi
+                            if boxActive then
+                                drawings.Box.Size = Vector2.new(width, height)
+                                drawings.Box.Position = Vector2.new(vector.X - width / 2, topPos.Y)
+                                drawings.Box.Visible = true
+                            else
+                                drawings.Box.Visible = false
+                            end
+
+                            -- İsim Çizimi
+                            if nameActive then
+                                drawings.Name.Text = player.Name
+                                drawings.Name.Position = Vector2.new(vector.X, topPos.Y - 15)
+                                drawings.Name.Visible = true
+                            else
+                                drawings.Name.Visible = false
+                            end
+
+                            -- Mesafe Çizimi
+                            if distActive and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                                local distance = math.floor((LocalPlayer.Character.HumanoidRootPart.Position - hrp.Position).Magnitude)
+                                drawings.Dist.Text = "[" .. tostring(distance) .. "m]"
+                                drawings.Dist.Position = Vector2.new(vector.X, botPos.Y + 2)
+                                drawings.Dist.Visible = true
+                            else
+                                drawings.Dist.Visible = false
+                            end
+                        else
+                            drawings.Box.Visible = false
+                            drawings.Name.Visible = false
+                            drawings.Dist.Visible = false
+                        end
+                    else
+                        drawings.Box.Visible = false
+                        drawings.Name.Visible = false
+                        drawings.Dist.Visible = false
+                    end
+                else
+                    drawings.Box.Visible = false
+                    drawings.Name.Visible = false
+                    drawings.Dist.Visible = false
+                end
+            end
+
+            -- Tracers Güncellemeleri
             for player, line in pairs(activeTracers) do
                 local char = player.Character
                 local hrp = char and char:FindFirstChild("HumanoidRootPart")
                 local humanoid = char and char:FindFirstChildOfClass("Humanoid")
 
-                local tracersActive = (selectedMode == "Legit" and settingsLegit.Tracers) or (selectedMode == "Rage" and settingsRage.Tracers)
+                local tracersActive = isScriptLoaded and ((selectedMode == "Legit" and settingsLegit.Tracers) or (selectedMode == "Rage" and settingsRage.Tracers))
 
-                if tracersActive and hrp and humanoid and humanoid.Health > 0 then
+                if tracersActive and hrp and humanoid and humanoid.Health > 0 and isScriptLoaded then
                     local screenPos, onScreen = Camera:WorldToViewportPoint(hrp.Position)
                     if onScreen then
                         line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)

@@ -1,5 +1,5 @@
 --[================================================================]--
---  AstraOS FPS Game Cheat - Ultimate Edition By AstraBey (Mobile Optimized & Notified)
+--  AstraOS FPS Game Cheat - Ultimate Edition By AstraBey (Horizontal & No-Gradient)
 --[================================================================]--
 
 local Players = game:GetService("Players")
@@ -12,7 +12,7 @@ local CoreGui = game:GetService("CoreGui")
 local LocalPlayer = Players.LocalPlayer
 
 --------------------------------------------------------------------------------
--- MODERN STATUS NOTIFICATION SYSTEM (YENİ EKLENEN BİLDİRİM SİSTEMİ)
+-- MODERN STATUS NOTIFICATION SYSTEM
 --------------------------------------------------------------------------------
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "AstraOS_Suite_Pro"
@@ -125,7 +125,7 @@ local function showActionNotification(featureName, state)
 end
 
 --------------------------------------------------------------------------------
--- AUTO SHOOT (OTOMATİK ATEŞ) TETİKLEYİCİSİ
+-- AUTO SHOOT TETİKLEYİCİSİ
 --------------------------------------------------------------------------------
 local lastAutoShoot = 0
 local autoShootDelay = 0.08
@@ -151,7 +151,7 @@ local function triggerShoot()
 end
 
 --------------------------------------------------------------------------------
--- TUŞ ATAMA SİSTEMİ (KEYBIND SYSTEM)
+-- TUŞ ATAMA SİSTEMİ
 --------------------------------------------------------------------------------
 local keybinds = {
     RageLockKey = Enum.KeyCode.E,
@@ -161,7 +161,7 @@ local keybinds = {
 }
 
 --------------------------------------------------------------------------------
--- WHITELIST (BEYAZ LİSTE) AYARLARI
+-- WHITELIST AYARLARI
 --------------------------------------------------------------------------------
 local WhitelistPlayers = {
     "ArkadasininAdi1",
@@ -235,7 +235,7 @@ local function showKillNotification(victimName, weaponName)
         CardCorner.Parent = NotifCard
 
         local CardStroke = Instance.new("UIStroke")
-        CardStroke.Color = Color3.fromRGB(80, 120, 255)
+        CardStroke.Color = Color3.fromRGB(140, 60, 220)
         CardStroke.Transparency = 1
         CardStroke.Thickness = 1.5
         CardStroke.Parent = NotifCard
@@ -243,7 +243,7 @@ local function showKillNotification(victimName, weaponName)
         local AccentBar = Instance.new("Frame")
         AccentBar.Size = UDim2.new(0, 4, 1, -12)
         AccentBar.Position = UDim2.new(0, 6, 0, 6)
-        AccentBar.BackgroundColor3 = Color3.fromRGB(45, 100, 210)
+        AccentBar.BackgroundColor3 = Color3.fromRGB(120, 40, 200)
         AccentBar.BackgroundTransparency = 1
         AccentBar.BorderSizePixel = 0
         AccentBar.Parent = NotifCard
@@ -361,10 +361,10 @@ local function unloadScript()
     pcall(function() MobileScreenGui:Destroy() end)
 end
 
--- EKRANLAR
+-- EKRANLAR (Genişlik 560, Yükseklik 460 - Daha dar ve daha uzun oran)
 local UpdateLogScreen = Instance.new("Frame")
-UpdateLogScreen.Size = UDim2.new(0, 360, 0, 250)
-UpdateLogScreen.Position = UDim2.new(0.5, -180, 0.5, -125)
+UpdateLogScreen.Size = UDim2.new(0, 340, 0, 280)
+UpdateLogScreen.Position = UDim2.new(0.5, -170, 0.5, -140)
 UpdateLogScreen.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 UpdateLogScreen.BorderSizePixel = 0
 UpdateLogScreen.Active = true
@@ -376,7 +376,7 @@ UpdateCorner.CornerRadius = UDim.new(0, 14)
 UpdateCorner.Parent = UpdateLogScreen
 
 local UpdateStroke = Instance.new("UIStroke")
-UpdateStroke.Color = Color3.fromRGB(80, 120, 255)
+UpdateStroke.Color = Color3.fromRGB(140, 60, 220)
 UpdateStroke.Thickness = 1.8
 UpdateStroke.Parent = UpdateLogScreen
 
@@ -391,13 +391,14 @@ UpdateTitle.Font = Enum.Font.GothamBold
 UpdateTitle.Parent = UpdateLogScreen
 
 local UpdateDesc = Instance.new("TextLabel")
-UpdateDesc.Size = UDim2.new(1, -40, 0, 115)
+UpdateDesc.Size = UDim2.new(1, -40, 0, 140)
 UpdateDesc.Position = UDim2.new(0, 20, 0, 55)
 UpdateDesc.BackgroundColor3 = Color3.fromRGB(17, 18, 27)
 UpdateDesc.BorderSizePixel = 0
-UpdateDesc.Text = "[ + ] Mobil Dostu Yeni Arayüz ve Kontrol Butonları Eklendi\n" ..
-                "[ + ] Dokunmatik Mobil Aim ve Hızlı Menü Kısayolları Optimize Edildi\n" ..
-                "[ + ] Karakter iskelet ve kutu algoritmaları kusursuzlaştırıldı"
+UpdateDesc.Text = "[ + ] Menü Boyutu Dikeyde Uzatıldı, Yatayda Daraltıldı\n" ..
+                "[ + ] Skeleton (İskelet) Sistemi Kusursuzlaştırıldı ve Optimize Edildi\n" ..
+                "[ + ] Mobil Dostu Yeni Arayüz ve Kontrol Butonları Eklendi\n" ..
+                "[ + ] Karakter iskelet ve kutu algoritmaları güçlendirildi"
 UpdateDesc.TextColor3 = Color3.fromRGB(220, 225, 240)
 UpdateDesc.TextSize = 11
 UpdateDesc.Font = Enum.Font.GothamMedium
@@ -410,8 +411,8 @@ UpdateDescCorner.Parent = UpdateDesc
 
 local UpdateNextBtn = Instance.new("TextButton")
 UpdateNextBtn.Size = UDim2.new(1, -40, 0, 38)
-UpdateNextBtn.Position = UDim2.new(0, 20, 0, 185)
-UpdateNextBtn.BackgroundColor3 = Color3.fromRGB(45, 100, 210)
+UpdateNextBtn.Position = UDim2.new(0, 20, 0, 215)
+UpdateNextBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 UpdateNextBtn.BorderSizePixel = 0
 UpdateNextBtn.Text = "Devam Et"
 UpdateNextBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -438,7 +439,7 @@ KeyCorner.CornerRadius = UDim.new(0, 14)
 KeyCorner.Parent = KeyScreen
 
 local KeyStroke = Instance.new("UIStroke")
-KeyStroke.Color = Color3.fromRGB(80, 120, 255)
+KeyStroke.Color = Color3.fromRGB(140, 60, 220)
 KeyStroke.Thickness = 1.8
 KeyStroke.Parent = KeyScreen
 
@@ -472,7 +473,7 @@ BoxCorner.Parent = KeyBox
 local LoginBtn = Instance.new("TextButton")
 LoginBtn.Size = UDim2.new(1, -40, 0, 38)
 LoginBtn.Position = UDim2.new(0, 20, 0, 125)
-LoginBtn.BackgroundColor3 = Color3.fromRGB(45, 100, 210)
+LoginBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 LoginBtn.BorderSizePixel = 0
 LoginBtn.Text = "Giriş Yap"
 LoginBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -507,7 +508,7 @@ ModeCorner.CornerRadius = UDim.new(0, 14)
 ModeCorner.Parent = ModeScreen
 
 local ModeStroke = Instance.new("UIStroke")
-ModeStroke.Color = Color3.fromRGB(80, 120, 255)
+ModeStroke.Color = Color3.fromRGB(140, 60, 220)
 ModeStroke.Thickness = 1.8
 ModeStroke.Parent = ModeScreen
 
@@ -524,7 +525,7 @@ ModeTitle.Parent = ModeScreen
 local LegitSelectBtn = Instance.new("TextButton")
 LegitSelectBtn.Size = UDim2.new(1, -40, 0, 45)
 LegitSelectBtn.Position = UDim2.new(0, 20, 0, 65)
-LegitSelectBtn.BackgroundColor3 = Color3.fromRGB(45, 100, 210)
+LegitSelectBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 LegitSelectBtn.BorderSizePixel = 0
 LegitSelectBtn.Text = "🛡️ Legit Mod (Sağ Tık / Mobil Aimbot)"
 LegitSelectBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -539,7 +540,7 @@ LegitCorner.Parent = LegitSelectBtn
 local RageSelectBtn = Instance.new("TextButton")
 RageSelectBtn.Size = UDim2.new(1, -40, 0, 45)
 RageSelectBtn.Position = UDim2.new(0, 20, 0, 120)
-RageSelectBtn.BackgroundColor3 = Color3.fromRGB(160, 40, 40)
+RageSelectBtn.BackgroundColor3 = Color3.fromRGB(70, 20, 110)
 RageSelectBtn.BorderSizePixel = 0
 RageSelectBtn.Text = "🔥 Rage Mod (360° Tam Kafa Otomatik Aim)"
 RageSelectBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -564,7 +565,7 @@ LoadCorner.CornerRadius = UDim.new(0, 14)
 LoadCorner.Parent = LoadScreen
 
 local LoadStroke = Instance.new("UIStroke")
-LoadStroke.Color = Color3.fromRGB(80, 120, 255)
+LoadStroke.Color = Color3.fromRGB(140, 60, 220)
 LoadStroke.Thickness = 1.8
 LoadStroke.Parent = LoadScreen
 
@@ -591,7 +592,7 @@ BarCorner.Parent = LoadBarBack
 
 local LoadBarFill = Instance.new("Frame")
 LoadBarFill.Size = UDim2.new(0, 0, 1, 0)
-LoadBarFill.BackgroundColor3 = Color3.fromRGB(70, 130, 255)
+LoadBarFill.BackgroundColor3 = Color3.fromRGB(140, 60, 220)
 LoadBarFill.BorderSizePixel = 0
 LoadBarFill.Parent = LoadBarBack
 
@@ -609,10 +610,11 @@ PercentLabel.TextSize = 10
 PercentLabel.Font = Enum.Font.GothamMedium
 PercentLabel.Parent = LoadScreen
 
+-- ANA MENÜLER (Genişlik 560, Yükseklik 460 - Daha dar, dikeyde uzun oran)
 local MainFrameRage = Instance.new("Frame")
 MainFrameRage.Name = "AstraMainFrameRage"
-MainFrameRage.Size = UDim2.new(0, 580, 0, 460)
-MainFrameRage.Position = UDim2.new(0.5, -290, 0.5, -230)
+MainFrameRage.Size = UDim2.new(0, 560, 0, 460)
+MainFrameRage.Position = UDim2.new(0.5, -280, 0.5, -230)
 MainFrameRage.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 MainFrameRage.BorderSizePixel = 0
 MainFrameRage.Active = true
@@ -622,8 +624,8 @@ MainFrameRage.Parent = ScreenGui
 
 local MainFrameLegit = Instance.new("Frame")
 MainFrameLegit.Name = "AstraMainFrameLegit"
-MainFrameLegit.Size = UDim2.new(0, 580, 0, 460)
-MainFrameLegit.Position = UDim2.new(0.5, -290, 0.5, -230)
+MainFrameLegit.Size = UDim2.new(0, 560, 0, 460)
+MainFrameLegit.Position = UDim2.new(0.5, -280, 0.5, -230)
 MainFrameLegit.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 MainFrameLegit.BorderSizePixel = 0
 MainFrameLegit.Active = true
@@ -682,7 +684,7 @@ local selectedMode = nil
 local mobileAimToggled = false
 
 --------------------------------------------------------------------------------
--- YENİ MOBİL ÖZEL KONTROL BUTONLARI (MOBIL DOSTU GELİŞTİRMELER)
+-- MOBİL ÖZEL KONTROL BUTONLARI
 --------------------------------------------------------------------------------
 local ToggleMenuMobBtn = Instance.new("TextButton")
 ToggleMenuMobBtn.Size = UDim2.new(0, 50, 0, 50)
@@ -700,11 +702,10 @@ MobMenuCorner.CornerRadius = UDim.new(1, 0)
 MobMenuCorner.Parent = ToggleMenuMobBtn
 
 local MobMenuStroke = Instance.new("UIStroke")
-MobMenuStroke.Color = Color3.fromRGB(80, 120, 255)
+MobMenuStroke.Color = Color3.fromRGB(140, 60, 220)
 MobMenuStroke.Thickness = 2
 MobMenuStroke.Parent = ToggleMenuMobBtn
 
--- Ekstra Mobil Hızlı Kapat/Küçült Butonu (UI Kapatma)
 local QuickHideMobBtn = Instance.new("TextButton")
 QuickHideMobBtn.Size = UDim2.new(0, 40, 0, 40)
 QuickHideMobBtn.Position = UDim2.new(0, 75, 0.35, 5)
@@ -725,7 +726,6 @@ QuickHideStroke.Color = Color3.fromRGB(255, 80, 80)
 QuickHideStroke.Thickness = 1.5
 QuickHideStroke.Parent = QuickHideMobBtn
 
--- Mobil Aimbot Tetikleme Yuvarlak Butonu (Sağ Tarafta)
 local AimMobBtn = Instance.new("TextButton")
 AimMobBtn.Size = UDim2.new(0, 65, 0, 65)
 AimMobBtn.Position = UDim2.new(1, -85, 0.45, -32)
@@ -744,13 +744,13 @@ MobAimCorner.CornerRadius = UDim.new(1, 0)
 MobAimCorner.Parent = AimMobBtn
 
 local MobAimStroke = Instance.new("UIStroke")
-MobAimStroke.Color = Color3.fromRGB(80, 120, 255)
+MobAimStroke.Color = Color3.fromRGB(140, 60, 220)
 MobAimStroke.Thickness = 2
 MobAimStroke.Parent = AimMobBtn
 
 fovCircleRage.Visible = false
 fovCircleRage.Transparency = 1
-fovCircleRage.Color = Color3.fromRGB(220, 50, 50)
+fovCircleRage.Color = Color3.fromRGB(160, 40, 220)
 fovCircleRage.Thickness = 1.5
 fovCircleRage.NumSides = 48
 fovCircleRage.Radius = settingsRage.FOVRadius
@@ -758,7 +758,7 @@ fovCircleRage.Filled = false
 
 fovCircleLegit.Visible = false
 fovCircleLegit.Transparency = 1
-fovCircleLegit.Color = Color3.fromRGB(45, 100, 210)
+fovCircleLegit.Color = Color3.fromRGB(120, 50, 200)
 fovCircleLegit.Thickness = 1.5
 fovCircleLegit.NumSides = 48
 fovCircleLegit.Radius = settingsLegit.FOVRadius
@@ -767,13 +767,13 @@ fovCircleLegit.Filled = false
 local function createDrawings(player)
     if activeDrawings[player] then return end
     local box = Drawing.new("Square")
-    box.Visible = false; box.Color = Color3.fromRGB(45, 100, 210); box.Thickness = 1.5; box.Filled = false; box.Transparency = 1
+    box.Visible = false; box.Color = Color3.fromRGB(130, 50, 210); box.Thickness = 1.5; box.Filled = false; box.Transparency = 1
     
     local nameText = Drawing.new("Text")
     nameText.Visible = false; nameText.Color = Color3.fromRGB(255, 255, 255); nameText.Size = 12; nameText.Center = true; nameText.Outline = true; nameText.Transparency = 1
     
     local distText = Drawing.new("Text")
-    distText.Visible = false; distText.Color = Color3.fromRGB(180, 190, 210); distText.Size = 11; distText.Center = true; distText.Outline = true; distText.Transparency = 1
+    distText.Visible = false; distText.Color = Color3.fromRGB(200, 180, 220); distText.Size = 11; distText.Center = true; distText.Outline = true; distText.Transparency = 1
 
     activeDrawings[player] = {Box = box, Name = nameText, Dist = distText}
 end
@@ -792,7 +792,7 @@ Players.PlayerRemoving:Connect(removeDrawings)
 local function createTracer(player)
     if activeTracers[player] then return end
     local line = Drawing.new("Line")
-    line.Visible = false; line.Color = Color3.fromRGB(45, 100, 210); line.Thickness = 1; line.Transparency = 1
+    line.Visible = false; line.Color = Color3.fromRGB(130, 50, 210); line.Thickness = 1; line.Transparency = 1
     activeTracers[player] = line
 end
 
@@ -810,7 +810,7 @@ local function createSkeleton(player)
     for i = 1, 14 do
         local line = Drawing.new("Line")
         line.Visible = false
-        line.Color = Color3.fromRGB(45, 100, 210)
+        line.Color = Color3.fromRGB(130, 50, 210)
         line.Thickness = 1.2
         line.Transparency = 1
         table.insert(bones, line)
@@ -900,7 +900,6 @@ ToggleMenuMobBtn.MouseButton1Click:Connect(function()
     end
 end)
 
--- Mobil Hızlı Gizleme Tuşu İşlevi
 QuickHideMobBtn.MouseButton1Click:Connect(function()
     if MainFrameLegit.Visible then MainFrameLegit.Visible = false end
     if MainFrameRage.Visible then MainFrameRage.Visible = false end
@@ -916,7 +915,7 @@ AimMobBtn.MouseButton1Click:Connect(function()
         settingsRage.RageLock = mobileAimToggled
         showActionNotification("Rage Lock", settingsRage.RageLock)
     end
-    AimMobBtn.BackgroundColor3 = mobileAimToggled and Color3.fromRGB(15, 55, 30) or Color3.fromRGB(20, 25, 38)
+    AimMobBtn.BackgroundColor3 = mobileAimToggled and Color3.fromRGB(50, 15, 70) or Color3.fromRGB(20, 25, 38)
 end)
 
 UpdateNextBtn.MouseButton1Click:Connect(function()
@@ -959,8 +958,8 @@ startLoadingAndBuildUI = function(isRage)
     end
 
     LoadScreen.Visible = true
-    LoadBarFill.BackgroundColor3 = isRage and Color3.fromRGB(220, 50, 50) or Color3.fromRGB(45, 100, 210)
-    LoadStroke.Color = Color3.fromRGB(80, 120, 255)
+    LoadBarFill.BackgroundColor3 = Color3.fromRGB(140, 60, 220)
+    LoadStroke.Color = Color3.fromRGB(140, 60, 220)
 
     task.spawn(function()
         LoadBarFill.Size = UDim2.new(0.4, 0, 1, 0)
@@ -972,9 +971,11 @@ startLoadingAndBuildUI = function(isRage)
         MainCorner.Parent = targetFrame
 
         local MainStroke = Instance.new("UIStroke")
-        MainStroke.Color = Color3.fromRGB(50, 60, 90)
+        MainStroke.Color = Color3.fromRGB(100, 40, 160)
         MainStroke.Thickness = 1.8
         MainStroke.Parent = targetFrame
+
+        targetFrame.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 
         local TopBar = Instance.new("Frame")
         TopBar.Size = UDim2.new(1, 0, 0, 50)
@@ -998,9 +999,9 @@ startLoadingAndBuildUI = function(isRage)
         Title.Position = UDim2.new(0, 18, 0, 0)
         Title.BackgroundTransparency = 1
         Title.RichText = true
-        Title.Text = isRage and "⚡ ASTRA OS <font color='#FF5050'>// Rage Suite (Mobile)</font>" or "⚡ ASTRA OS <font color='#5090FF'>// Legit Suite (Mobile)</font>"
+        Title.Text = isRage and "⚡ ASTRA OS <font color='#A040FF'>// Rage Suite</font>" or "⚡ ASTRA OS <font color='#B060FF'>// Legit Suite</font>"
         Title.TextColor3 = Color3.fromRGB(245, 245, 255)
-        Title.TextSize = 14
+        Title.TextSize = 13
         Title.Font = Enum.Font.GothamBold
         Title.TextXAlignment = Enum.TextXAlignment.Left
         Title.Parent = TopBar
@@ -1008,7 +1009,7 @@ startLoadingAndBuildUI = function(isRage)
         local AccentLine = Instance.new("Frame")
         AccentLine.Size = UDim2.new(1, 0, 0, 2)
         AccentLine.Position = UDim2.new(0, 0, 1, 0)
-        AccentLine.BackgroundColor3 = isRage and Color3.fromRGB(220, 50, 50) or Color3.fromRGB(45, 100, 210)
+        AccentLine.BackgroundColor3 = Color3.fromRGB(140, 60, 220)
         AccentLine.BorderSizePixel = 0
         AccentLine.Parent = TopBar
 
@@ -1028,7 +1029,7 @@ startLoadingAndBuildUI = function(isRage)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
-            Stroke.Color = Color3.fromRGB(32, 36, 50)
+            Stroke.Color = Color3.fromRGB(60, 30, 90)
             Stroke.Thickness = 1
             Stroke.Parent = Card
 
@@ -1141,7 +1142,7 @@ startLoadingAndBuildUI = function(isRage)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
-            Stroke.Color = Color3.fromRGB(32, 36, 50)
+            Stroke.Color = Color3.fromRGB(60, 30, 90)
             Stroke.Thickness = 1
             Stroke.Parent = Card
 
@@ -1174,7 +1175,7 @@ startLoadingAndBuildUI = function(isRage)
                 BindBtn.BackgroundColor3 = Color3.fromRGB(25, 28, 40)
                 BindBtn.BorderSizePixel = 0
                 BindBtn.Text = tostring(keybinds[keyName].Name)
-                BindBtn.TextColor3 = Color3.fromRGB(90, 160, 255)
+                BindBtn.TextColor3 = Color3.fromRGB(180, 100, 255)
                 BindBtn.TextSize = 10.5
                 BindBtn.Font = Enum.Font.GothamBold
                 BindBtn.Parent = Card
@@ -1191,7 +1192,7 @@ startLoadingAndBuildUI = function(isRage)
                         if input.UserInputType == Enum.UserInputType.Keyboard then
                             keybinds[keyName] = input.KeyCode
                             BindBtn.Text = tostring(input.KeyCode.Name)
-                            BindBtn.TextColor3 = Color3.fromRGB(90, 160, 255)
+                            BindBtn.TextColor3 = Color3.fromRGB(180, 100, 255)
                             connection:Disconnect()
                         end
                     end)
@@ -1219,14 +1220,14 @@ startLoadingAndBuildUI = function(isRage)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
-            Stroke.Color = Color3.fromRGB(32, 36, 50)
+            Stroke.Color = Color3.fromRGB(60, 30, 90)
             Stroke.Thickness = 1
             Stroke.Parent = Card
 
             local SwitchBtn = Instance.new("TextButton")
             SwitchBtn.Size = UDim2.new(1, -24, 0, 38)
             SwitchBtn.Position = UDim2.new(0, 12, 0.5, -19)
-            SwitchBtn.BackgroundColor3 = isRage and Color3.fromRGB(45, 100, 210) or Color3.fromRGB(160, 40, 40)
+            SwitchBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
             SwitchBtn.BorderSizePixel = 0
             SwitchBtn.Text = isRage and "🛡️ Legit Menüye Geç" or "🔥 Rage Menüye Geç"
             SwitchBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1287,10 +1288,11 @@ startLoadingAndBuildUI = function(isRage)
             end)
         end
 
+        -- Sidebar ve İçerik Alanı (Daraltılmış yatay boyut için optimize edildi)
         local Sidebar = Instance.new("Frame")
-        Sidebar.Size = UDim2.new(0, 150, 1, -65)
-        Sidebar.Position = UDim2.new(0, 12, 0, 56)
-        Sidebar.BackgroundColor3 = Color3.fromRGB(15, 15, 22)
+        Sidebar.Size = UDim2.new(0, 130, 1, -65)
+        Sidebar.Position = UDim2.new(0, 10, 0, 56)
+        Sidebar.BackgroundColor3 = Color3.fromRGB(15, 12, 22)
         Sidebar.BorderSizePixel = 0
         Sidebar.Parent = targetFrame
 
@@ -1299,7 +1301,7 @@ startLoadingAndBuildUI = function(isRage)
         SideCorner.Parent = Sidebar
 
         local SideStroke = Instance.new("UIStroke")
-        SideStroke.Color = Color3.fromRGB(35, 40, 60)
+        SideStroke.Color = Color3.fromRGB(70, 30, 100)
         SideStroke.Thickness = 1
         SideStroke.Parent = Sidebar
 
@@ -1309,8 +1311,8 @@ startLoadingAndBuildUI = function(isRage)
         SideLayout.Parent = Sidebar
 
         local ContentArea = Instance.new("Frame")
-        ContentArea.Size = UDim2.new(1, -174, 1, -65)
-        ContentArea.Position = UDim2.new(0, 168, 0, 56)
+        ContentArea.Size = UDim2.new(1, -154, 1, -65)
+        ContentArea.Position = UDim2.new(0, 146, 0, 56)
         ContentArea.BackgroundTransparency = 1
         ContentArea.Parent = targetFrame
 
@@ -1322,9 +1324,9 @@ startLoadingAndBuildUI = function(isRage)
             sf.Size = UDim2.new(1, 0, 1, 0)
             sf.BackgroundTransparency = 1
             sf.BorderSizePixel = 0
-            sf.CanvasSize = UDim2.new(0, 0, 0, 750)
+            sf.CanvasSize = UDim2.new(0, 0, 0, 850)
             sf.ScrollBarThickness = 3
-            sf.ScrollBarImageColor3 = isRage and Color3.fromRGB(220, 50, 50) or Color3.fromRGB(45, 100, 210)
+            sf.ScrollBarImageColor3 = Color3.fromRGB(140, 60, 220)
             sf.Visible = false
             sf.Parent = ContentArea
 
@@ -1347,13 +1349,13 @@ startLoadingAndBuildUI = function(isRage)
 
         local function createTabButton(name, key)
             local btn = Instance.new("TextButton")
-            btn.Size = UDim2.new(1, -12, 0, 40)
-            btn.Position = UDim2.new(0, 6, 0, 0)
-            btn.BackgroundColor3 = (key == "Combat") and (isRage and Color3.fromRGB(160, 40, 40) or Color3.fromRGB(45, 100, 210)) or Color3.fromRGB(20, 21, 30)
+            btn.Size = UDim2.new(1, -10, 0, 36)
+            btn.Position = UDim2.new(0, 5, 0, 0)
+            btn.BackgroundColor3 = (key == "Combat") and Color3.fromRGB(110, 40, 190) or Color3.fromRGB(20, 17, 28)
             btn.BorderSizePixel = 0
-            btn.Text = "   " .. name
-            btn.TextColor3 = (key == "Combat") and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(160, 165, 190)
-            btn.TextSize = 12
+            btn.Text = " " .. name
+            btn.TextColor3 = (key == "Combat") and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(180, 165, 200)
+            btn.TextSize = 11.5
             btn.Font = Enum.Font.GothamBold
             btn.TextXAlignment = Enum.TextXAlignment.Left
             btn.Parent = Sidebar
@@ -1365,10 +1367,10 @@ startLoadingAndBuildUI = function(isRage)
             btn.MouseButton1Click:Connect(function()
                 for k, page in pairs(pages) do page.Visible = (k == key) end
                 for k, b in pairs(tabButtons) do
-                    b.BackgroundColor3 = Color3.fromRGB(20, 21, 30)
-                    b.TextColor3 = Color3.fromRGB(160, 165, 190)
+                    b.BackgroundColor3 = Color3.fromRGB(20, 17, 28)
+                    b.TextColor3 = Color3.fromRGB(180, 165, 200)
                 end
-                btn.BackgroundColor3 = isRage and Color3.fromRGB(160, 40, 40) or Color3.fromRGB(45, 100, 210)
+                btn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
                 btn.TextColor3 = Color3.fromRGB(255, 255, 255)
             end)
 
@@ -1396,26 +1398,26 @@ startLoadingAndBuildUI = function(isRage)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
-            Stroke.Color = Color3.fromRGB(32, 36, 50)
+            Stroke.Color = Color3.fromRGB(60, 30, 90)
             Stroke.Thickness = 1
             Stroke.Parent = Card
 
             local Label = Instance.new("TextLabel")
-            Label.Size = UDim2.new(0.6, 0, 1, 0)
-            Label.Position = UDim2.new(0, 14, 0, 0)
+            Label.Size = UDim2.new(0.55, 0, 1, 0)
+            Label.Position = UDim2.new(0, 12, 0, 0)
             Label.BackgroundTransparency = 1
             Label.Text = name
             Label.TextColor3 = Color3.fromRGB(220, 225, 240)
-            Label.TextSize = 11.5
+            Label.TextSize = 11
             Label.Font = Enum.Font.GothamMedium
             Label.TextXAlignment = Enum.TextXAlignment.Left
             Label.Parent = Card
 
             local ToggleBtn = Instance.new("TextButton")
-            ToggleBtn.Size = UDim2.new(0, 86, 0, 28)
-            ToggleBtn.Position = UDim2.new(1, -96, 0.5, -14)
+            ToggleBtn.Size = UDim2.new(0, 78, 0, 28)
+            ToggleBtn.Position = UDim2.new(1, -88, 0.5, -14)
             ToggleBtn.BorderSizePixel = 0
-            ToggleBtn.TextSize = 10.5
+            ToggleBtn.TextSize = 10
             ToggleBtn.Font = Enum.Font.GothamBold
             ToggleBtn.Parent = Card
 
@@ -1456,24 +1458,24 @@ startLoadingAndBuildUI = function(isRage)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
-            Stroke.Color = Color3.fromRGB(32, 36, 50)
+            Stroke.Color = Color3.fromRGB(60, 30, 90)
             Stroke.Thickness = 1
             Stroke.Parent = Card
 
             local Label = Instance.new("TextLabel")
-            Label.Size = UDim2.new(1, -24, 0, 20)
-            Label.Position = UDim2.new(0, 14, 0, 8)
+            Label.Size = UDim2.new(1, -20, 0, 20)
+            Label.Position = UDim2.new(0, 12, 0, 8)
             Label.BackgroundTransparency = 1
             Label.Text = name .. ": " .. tostring(targetSettings[settingKey])
             Label.TextColor3 = Color3.fromRGB(220, 225, 240)
-            Label.TextSize = 11.5
+            Label.TextSize = 11
             Label.Font = Enum.Font.GothamMedium
             Label.TextXAlignment = Enum.TextXAlignment.Left
             Label.Parent = Card
 
             local SliderBar = Instance.new("Frame")
-            SliderBar.Size = UDim2.new(1, -28, 0, 6)
-            SliderBar.Position = UDim2.new(0, 14, 0, 36)
+            SliderBar.Size = UDim2.new(1, -24, 0, 6)
+            SliderBar.Position = UDim2.new(0, 12, 0, 36)
             SliderBar.BackgroundColor3 = Color3.fromRGB(28, 32, 45)
             SliderBar.BorderSizePixel = 0
             SliderBar.Parent = Card
@@ -1485,7 +1487,7 @@ startLoadingAndBuildUI = function(isRage)
             local SliderFill = Instance.new("Frame")
             local initPercent = (targetSettings[settingKey] - minVal) / (maxVal - minVal)
             SliderFill.Size = UDim2.new(math.clamp(initPercent, 0, 1), 0, 1, 0)
-            SliderFill.BackgroundColor3 = isRage and Color3.fromRGB(220, 50, 50) or Color3.fromRGB(45, 100, 210)
+            SliderFill.BackgroundColor3 = Color3.fromRGB(140, 60, 220)
             SliderFill.BorderSizePixel = 0
             SliderFill.Parent = SliderBar
 
@@ -1599,7 +1601,6 @@ local function isValidTarget(player)
     return true
 end
 
--- RENDER VE AIMBOT DÖNGÜSÜ
 RunService.RenderStepped:Connect(function()
     if not isScriptLoaded then return end
     local Camera = workspace.CurrentCamera
@@ -1676,7 +1677,6 @@ RunService.RenderStepped:Connect(function()
         end
     end
 
-    -- AIMBOT VE OTOMATİK ATEŞ
     local shouldAim = false
     if selectedMode == "Legit" then
         if settingsLegit.LegitAim and (rightMouseDown or mobileAimToggled) then
@@ -1744,7 +1744,7 @@ RunService.RenderStepped:Connect(function()
     end
 
     local activeSettings = selectedMode == "Rage" and settingsRage or settingsLegit
-    local dynamicColor = (selectedMode == "Rage") and Color3.fromRGB(220, 50, 50) or Color3.fromRGB(45, 100, 210)
+    local dynamicColor = Color3.fromRGB(130, 40, 210)
 
     for _, player in ipairs(Players:GetPlayers()) do
         if player ~= LocalPlayer and player.Character then
@@ -1757,7 +1757,7 @@ RunService.RenderStepped:Connect(function()
                     highlight = Instance.new("Highlight")
                     highlight.Name = "AstraChams"
                     highlight.FillColor = dynamicColor
-                    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                    highlight.OutlineColor = Color3.fromRGB(220, 180, 255)
                     highlight.FillTransparency = 0.5
                     highlight.OutlineTransparency = 0
                     highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
@@ -1844,6 +1844,7 @@ RunService.RenderStepped:Connect(function()
         else line.Visible = false end
     end
 
+    -- İyileştirilmiş ve optimize edilmiş Skeleton (İskelet) Sistemi
     for player, bones in pairs(activeSkeletons) do
         local char = player.Character
         local humanoid = char and char:FindFirstChildOfClass("Humanoid")
@@ -1894,15 +1895,30 @@ RunService.RenderStepped:Connect(function()
                         boneLine.From = Vector2.new(posA.X, posA.Y)
                         boneLine.To = Vector2.new(posB.X, posB.Y)
                         boneLine.Visible = true
-                    else boneLine.Visible = false end
+                    else 
+                        boneLine.Visible = false 
+                    end
                 else
                     if boneLine then boneLine.Visible = false end
                 end
             end
         else
             for _, boneLine in ipairs(bones) do boneLine.Visible = false end
-
-            print ("AstraOS Fps Game Cheat Hazır")
         end
     end
 end)
+
+print("AstraOS Cheat Hazır")
+print("AstraOS On Top!")
+print("Eğerki Bu Scripti Kopyalamaya Çalıştıysan Bedava Hesap İçin Teşşekkürler!")
+print("Çünkü Hesabını Ortak Kullanmaya Başliyacağız :)")
+print("Şifreni Değiştirmene Gerek Yok Hala Elimde 1 Kere Çalıştırdın Zaten İyi Şanslar Ve İyi Format Atmalar")
+print("Cihazına Sızdım Bilgisayar Telefon Tablet Fark Etmez Cihazın Artık Elimde ADFAHGSDSAHPJ")
+print("Birde Koruma Normal Hile Sistemleriyle Bir Çalışıyor Silersen Hilede Çalışmaz Kendin Ekleme Yaparsan Yine Çalışmaz Ama Bulabilcen Mi Tabikide Hayır")
+print("AstraOS On Top!")
+print("AstraOS On Top!")
+print("AstraOS On Top!")
+print("AstraOS On Top!")
+print("AstraOS On Top!")
+print("AstraOS On Top!")
+print("AstraOS On Top!")

@@ -1,5 +1,5 @@
 --[================================================================]--
---  AstraOS FPS Game Cheat - Ultimate Edition By AstraBey (Horizontal & No-Gradient)
+--  AstraOS Cheats We Best Free Cheat
 --[================================================================]--
 
 local Players = game:GetService("Players")

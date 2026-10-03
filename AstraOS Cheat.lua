@@ -1,5 +1,5 @@
 --[================================================================]--
---  AstraOS Cheats We Best Free Cheat
+--  AstraOS FPS Game Cheat We Best Free Cheats
 --[================================================================]--
 
 local Players = game:GetService("Players")
@@ -12,7 +12,73 @@ local CoreGui = game:GetService("CoreGui")
 local LocalPlayer = Players.LocalPlayer
 
 --------------------------------------------------------------------------------
--- MODERN STATUS NOTIFICATION SYSTEM
+-- ASTRAOS LIB VE CODE KEY SISTEMLERI 
+--------------------------------------------------------------------------------
+local function _codekeyname()
+    -- "AstraOS" Lib Key Sıralaması Bozulursa Çalışmaz
+    local libArr = {65, 115, 116, 114, 97, 79, 83}
+    local decoded = ""
+    for _, b in ipairs(libArr) do
+        decoded = decoded .. string.char(b)
+    end
+    return decoded
+end
+
+local HUB_NAME = _codekeyname()
+local NAME_WATERMARK = "AstraOS_Secure_Byte_Core"
+
+-- Çekirdek Lib Kontrol
+local function _secureByteCore()
+    local coreId = "AstraOS_Bytecode_Verified_Core_2026"
+    return coreId
+end
+-- "AstraOS" Lib Key Sıralaması Bozulursa Çalışmaz
+local originalLibcode = {65, 115, 116, 114, 97, 79, 83}
+pcall(function()
+    if typeof(string.dump) == "function" then
+        originalBytecode = string.dump(_secureByteCore)
+    end
+end)
+
+local function verifyHubIntegrity()
+    pcall(function()
+        -- Code Key Kontrolü
+        local Codekey = _codekeyname()
+        if HUB_NAME ~= Codekey or HUB_NAME ~= "AstraOS" then
+            unloadScript()
+            script:Destroy()
+            error("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+            print("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+        end
+        
+        local guiCheck = CoreGui:FindFirstChild("AstraOS_Suite_Pro") or LocalPlayer.PlayerGui:FindFirstChild("AstraOS_Suite_Pro")
+        if not guiCheck then
+            unloadScript()
+            script:Destroy()
+            error("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+            print("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+        end
+
+        if originalBytecode ~= "" and typeof(string.dump) == "function" then
+            local currentBytecode = string.dump(_secureByteCore)
+            if currentBytecode ~= originalBytecode then
+                unloadScript()
+                script:Destroy()
+                error("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+            print("AstraOS Hata: Bilinmedik Şekilde Çöktü?")
+            end
+        end
+    end)
+end
+
+task.spawn(function()
+    while task.wait(1) do
+        verifyHubIntegrity()
+    end
+end)
+
+--------------------------------------------------------------------------------
+-- YENİLENMİŞ MODERN BİLDİRİM SİSTEMİ
 --------------------------------------------------------------------------------
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "AstraOS_Suite_Pro"
@@ -26,62 +92,66 @@ end
 
 local ActionNotificationHolder = Instance.new("Frame")
 ActionNotificationHolder.Name = "ActionNotificationHolder"
-ActionNotificationHolder.Size = UDim2.new(0, 300, 0, 400)
-ActionNotificationHolder.Position = UDim2.new(1, -315, 1, -415)
+ActionNotificationHolder.Size = UDim2.new(0, 320, 0, 400)
+ActionNotificationHolder.Position = UDim2.new(1, -335, 1, -415)
 ActionNotificationHolder.BackgroundTransparency = 1
 ActionNotificationHolder.Parent = ScreenGui
 
 local ActionNotifLayout = Instance.new("UIListLayout")
 ActionNotifLayout.SortOrder = Enum.SortOrder.LayoutOrder
 ActionNotifLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
-ActionNotifLayout.Padding = UDim.new(0, 8)
+ActionNotifLayout.Padding = UDim.new(0, 10)
 ActionNotifLayout.Parent = ActionNotificationHolder
 
 local function showActionNotification(featureName, state)
     task.spawn(function()
         local NotifCard = Instance.new("Frame")
-        NotifCard.Size = UDim2.new(1, 0, 0, 50)
-        NotifCard.BackgroundColor3 = Color3.fromRGB(15, 16, 24)
+        NotifCard.Size = UDim2.new(1, 0, 0, 52)
+        NotifCard.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
         NotifCard.BackgroundTransparency = 1
         NotifCard.BorderSizePixel = 0
         NotifCard.Parent = ActionNotificationHolder
 
         local CardCorner = Instance.new("UICorner")
-        CardCorner.CornerRadius = UDim.new(0, 10)
+        CardCorner.CornerRadius = UDim.new(0, 12)
         CardCorner.Parent = NotifCard
 
         local CardStroke = Instance.new("UIStroke")
         CardStroke.Color = state and Color3.fromRGB(90, 255, 150) or Color3.fromRGB(255, 90, 90)
         CardStroke.Transparency = 1
-        CardStroke.Thickness = 1.5
+        CardStroke.Thickness = 1.8
         CardStroke.Parent = NotifCard
 
         local AccentBar = Instance.new("Frame")
-        AccentBar.Size = UDim2.new(0, 4, 1, -12)
-        AccentBar.Position = UDim2.new(0, 6, 0, 6)
+        AccentBar.Size = UDim2.new(0, 5, 1, -14)
+        AccentBar.Position = UDim2.new(0, 7, 0, 7)
         AccentBar.BackgroundColor3 = state and Color3.fromRGB(90, 255, 150) or Color3.fromRGB(255, 90, 90)
         AccentBar.BackgroundTransparency = 1
         AccentBar.BorderSizePixel = 0
         AccentBar.Parent = NotifCard
 
         local BarCorner = Instance.new("UICorner")
-        BarCorner.CornerRadius = UDim.new(0, 2)
+        BarCorner.CornerRadius = UDim.new(0, 3)
         BarCorner.Parent = AccentBar
 
         local IconLabel = Instance.new("TextLabel")
         IconLabel.Size = UDim2.new(0, 35, 1, 0)
-        IconLabel.Position = UDim2.new(0, 15, 0, 0)
+        IconLabel.Position = UDim2.new(0, 18, 0, 0)
         IconLabel.BackgroundTransparency = 1
-        IconLabel.Text = state and "✅" or "❌"
+        if state then
+            IconLabel.Text = "✅"
+        else
+            IconLabel.Text = "❌"
+        end
         IconLabel.TextTransparency = 1
         IconLabel.TextSize = 18
         IconLabel.Parent = NotifCard
 
         local TitleLabel = Instance.new("TextLabel")
-        TitleLabel.Size = UDim2.new(1, -60, 0, 20)
-        TitleLabel.Position = UDim2.new(0, 55, 0, 7)
+        TitleLabel.Size = UDim2.new(1, -65, 0, 20)
+        TitleLabel.Position = UDim2.new(0, 55, 0, 8)
         TitleLabel.BackgroundTransparency = 1
-        TitleLabel.Text = string.upper(featureName)
+        TitleLabel.Text = string.upper(featureName) .. " [" .. HUB_NAME .. "]"
         TitleLabel.TextColor3 = Color3.fromRGB(245, 245, 255)
         TitleLabel.TextTransparency = 1
         TitleLabel.TextSize = 11
@@ -90,10 +160,10 @@ local function showActionNotification(featureName, state)
         TitleLabel.Parent = NotifCard
 
         local DescLabel = Instance.new("TextLabel")
-        DescLabel.Size = UDim2.new(1, -60, 0, 20)
-        DescLabel.Position = UDim2.new(0, 55, 0, 23)
+        DescLabel.Size = UDim2.new(1, -65, 0, 20)
+        DescLabel.Position = UDim2.new(0, 55, 0, 24)
         DescLabel.BackgroundTransparency = 1
-        DescLabel.Text = state and "Durum: AKTIF EDILDI" or "Durum: KAPATILDI"
+        DescLabel.Text = state and "Durum: AKTİF EDİLDİ" or "Durum: KAPATILDI"
         DescLabel.TextColor3 = state and Color3.fromRGB(90, 255, 150) or Color3.fromRGB(255, 100, 100)
         DescLabel.TextTransparency = 1
         DescLabel.TextSize = 10
@@ -102,8 +172,8 @@ local function showActionNotification(featureName, state)
         DescLabel.Parent = NotifCard
 
         local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-        TweenService:Create(NotifCard, tweenInfo, {BackgroundTransparency = 0.15}):Play()
-        TweenService:Create(CardStroke, tweenInfo, {Transparency = 0.2}):Play()
+        TweenService:Create(NotifCard, tweenInfo, {BackgroundTransparency = 0.1}):Play()
+        TweenService:Create(CardStroke, tweenInfo, {Transparency = 0.15}):Play()
         TweenService:Create(AccentBar, tweenInfo, {BackgroundTransparency = 0}):Play()
         TweenService:Create(IconLabel, tweenInfo, {TextTransparency = 0}):Play()
         TweenService:Create(TitleLabel, tweenInfo, {TextTransparency = 0}):Play()
@@ -178,25 +248,8 @@ local function isWhitelisted(player)
     return false
 end
 
-local allRemotes = {}
-local function scanForRemotes(parent)
-    for _, child in ipairs(parent:GetChildren()) do
-        if child:IsA("RemoteEvent") or child:IsA("RemoteFunction") then
-            table.insert(allRemotes, child)
-        end
-        if #child:GetChildren() > 0 then
-            pcall(function() scanForRemotes(child) end)
-        end
-    end
-end
-
-pcall(function()
-    scanForRemotes(ReplicatedStorage)
-    scanForRemotes(workspace)
-end)
-
 local MobileScreenGui = Instance.new("ScreenGui")
-MobileScreenGui.Name = "AstraOS_MobileOverlay"
+MobileScreenGui.Name = HUB_NAME .. "_MobileOverlay"
 MobileScreenGui.ResetOnSpawn = false
 pcall(function()
     MobileScreenGui.Parent = CoreGui
@@ -210,8 +263,8 @@ end
 --------------------------------------------------------------------------------
 local NotificationHolder = Instance.new("Frame")
 NotificationHolder.Name = "NotificationHolder"
-NotificationHolder.Size = UDim2.new(0, 300, 0, 400)
-NotificationHolder.Position = UDim2.new(1, -315, 1, -415)
+NotificationHolder.Size = UDim2.new(0, 320, 0, 400)
+NotificationHolder.Position = UDim2.new(1, -335, 1, -415)
 NotificationHolder.BackgroundTransparency = 1
 NotificationHolder.Parent = ScreenGui
 
@@ -225,36 +278,36 @@ local function showKillNotification(victimName, weaponName)
     task.spawn(function()
         local NotifCard = Instance.new("Frame")
         NotifCard.Size = UDim2.new(1, 0, 0, 55)
-        NotifCard.BackgroundColor3 = Color3.fromRGB(15, 16, 24)
+        NotifCard.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
         NotifCard.BackgroundTransparency = 1
         NotifCard.BorderSizePixel = 0
         NotifCard.Parent = NotificationHolder
 
         local CardCorner = Instance.new("UICorner")
-        CardCorner.CornerRadius = UDim.new(0, 10)
+        CardCorner.CornerRadius = UDim.new(0, 12)
         CardCorner.Parent = NotifCard
 
         local CardStroke = Instance.new("UIStroke")
         CardStroke.Color = Color3.fromRGB(140, 60, 220)
         CardStroke.Transparency = 1
-        CardStroke.Thickness = 1.5
+        CardStroke.Thickness = 1.8
         CardStroke.Parent = NotifCard
 
         local AccentBar = Instance.new("Frame")
-        AccentBar.Size = UDim2.new(0, 4, 1, -12)
-        AccentBar.Position = UDim2.new(0, 6, 0, 6)
+        AccentBar.Size = UDim2.new(0, 5, 1, -14)
+        AccentBar.Position = UDim2.new(0, 7, 0, 7)
         AccentBar.BackgroundColor3 = Color3.fromRGB(120, 40, 200)
         AccentBar.BackgroundTransparency = 1
         AccentBar.BorderSizePixel = 0
         AccentBar.Parent = NotifCard
 
         local BarCorner = Instance.new("UICorner")
-        BarCorner.CornerRadius = UDim.new(0, 2)
+        BarCorner.CornerRadius = UDim.new(0, 3)
         BarCorner.Parent = AccentBar
 
         local IconLabel = Instance.new("TextLabel")
         IconLabel.Size = UDim2.new(0, 35, 1, 0)
-        IconLabel.Position = UDim2.new(0, 15, 0, 0)
+        IconLabel.Position = UDim2.new(0, 18, 0, 0)
         IconLabel.BackgroundTransparency = 1
         IconLabel.Text = "🎯"
         IconLabel.TextTransparency = 1
@@ -262,10 +315,10 @@ local function showKillNotification(victimName, weaponName)
         IconLabel.Parent = NotifCard
 
         local TitleLabel = Instance.new("TextLabel")
-        TitleLabel.Size = UDim2.new(1, -60, 0, 20)
+        TitleLabel.Size = UDim2.new(1, -65, 0, 20)
         TitleLabel.Position = UDim2.new(0, 55, 0, 9)
         TitleLabel.BackgroundTransparency = 1
-        TitleLabel.Text = "HEDEFI ETKISIZ HALE GETIRDIN!"
+        TitleLabel.Text = HUB_NAME .. " // HEDEF AVLANDI"
         TitleLabel.TextColor3 = Color3.fromRGB(90, 255, 150)
         TitleLabel.TextTransparency = 1
         TitleLabel.TextSize = 10
@@ -274,7 +327,7 @@ local function showKillNotification(victimName, weaponName)
         TitleLabel.Parent = NotifCard
 
         local DescLabel = Instance.new("TextLabel")
-        DescLabel.Size = UDim2.new(1, -60, 0, 20)
+        DescLabel.Size = UDim2.new(1, -65, 0, 20)
         DescLabel.Position = UDim2.new(0, 55, 0, 26)
         DescLabel.BackgroundTransparency = 1
         DescLabel.Text = "Kurban: " .. tostring(victimName)
@@ -286,8 +339,8 @@ local function showKillNotification(victimName, weaponName)
         DescLabel.Parent = NotifCard
 
         local tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
-        TweenService:Create(NotifCard, tweenInfo, {BackgroundTransparency = 0.15}):Play()
-        TweenService:Create(CardStroke, tweenInfo, {Transparency = 0.2}):Play()
+        TweenService:Create(NotifCard, tweenInfo, {BackgroundTransparency = 0.1}):Play()
+        TweenService:Create(CardStroke, tweenInfo, {Transparency = 0.15}):Play()
         TweenService:Create(AccentBar, tweenInfo, {BackgroundTransparency = 0}):Play()
         TweenService:Create(IconLabel, tweenInfo, {TextTransparency = 0}):Play()
         TweenService:Create(TitleLabel, tweenInfo, {TextTransparency = 0}):Play()
@@ -316,7 +369,7 @@ local fovCircleRage = Drawing.new("Circle")
 local fovCircleLegit = Drawing.new("Circle")
 local isScriptLoaded = true
 
-local function unloadScript()
+unloadScript = function()
     isScriptLoaded = false
     pcall(function() fovCircleRage:Remove() end)
     pcall(function() fovCircleLegit:Remove() end)
@@ -361,10 +414,10 @@ local function unloadScript()
     pcall(function() MobileScreenGui:Destroy() end)
 end
 
--- EKRANLAR (Genişlik 560, Yükseklik 460 - Daha dar ve daha uzun oran)
+-- EKRANLAR (Yenilenmiş Modern Arayüz Tasarımı)
 local UpdateLogScreen = Instance.new("Frame")
-UpdateLogScreen.Size = UDim2.new(0, 340, 0, 280)
-UpdateLogScreen.Position = UDim2.new(0.5, -170, 0.5, -140)
+UpdateLogScreen.Size = UDim2.new(0, 350, 0, 290)
+UpdateLogScreen.Position = UDim2.new(0.5, -175, 0.5, -145)
 UpdateLogScreen.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 UpdateLogScreen.BorderSizePixel = 0
 UpdateLogScreen.Active = true
@@ -372,33 +425,33 @@ UpdateLogScreen.Draggable = true
 UpdateLogScreen.Parent = ScreenGui
 
 local UpdateCorner = Instance.new("UICorner")
-UpdateCorner.CornerRadius = UDim.new(0, 14)
+UpdateCorner.CornerRadius = UDim.new(0, 16)
 UpdateCorner.Parent = UpdateLogScreen
 
 local UpdateStroke = Instance.new("UIStroke")
 UpdateStroke.Color = Color3.fromRGB(140, 60, 220)
-UpdateStroke.Thickness = 1.8
+UpdateStroke.Thickness = 2
 UpdateStroke.Parent = UpdateLogScreen
 
 local UpdateTitle = Instance.new("TextLabel")
-UpdateTitle.Size = UDim2.new(1, 0, 0, 40)
+UpdateTitle.Size = UDim2.new(1, 0, 0, 45)
 UpdateTitle.Position = UDim2.new(0, 0, 0, 15)
 UpdateTitle.BackgroundTransparency = 1
-UpdateTitle.Text = "⚡ AstraOS Güncelleme Günlükleri"
+UpdateTitle.Text = "⚡ " .. HUB_NAME .. " // Version 2"
 UpdateTitle.TextColor3 = Color3.fromRGB(245, 245, 255)
 UpdateTitle.TextSize = 14
 UpdateTitle.Font = Enum.Font.GothamBold
 UpdateTitle.Parent = UpdateLogScreen
 
 local UpdateDesc = Instance.new("TextLabel")
-UpdateDesc.Size = UDim2.new(1, -40, 0, 140)
-UpdateDesc.Position = UDim2.new(0, 20, 0, 55)
+UpdateDesc.Size = UDim2.new(1, -44, 0, 140)
+UpdateDesc.Position = UDim2.new(0, 22, 0, 60)
 UpdateDesc.BackgroundColor3 = Color3.fromRGB(17, 18, 27)
 UpdateDesc.BorderSizePixel = 0
-UpdateDesc.Text = "[ + ] Menü Boyutu Dikeyde Uzatıldı, Yatayda Daraltıldı\n" ..
-                "[ + ] Skeleton (İskelet) Sistemi Kusursuzlaştırıldı ve Optimize Edildi\n" ..
-                "[ + ] Mobil Dostu Yeni Arayüz ve Kontrol Butonları Eklendi\n" ..
-                "[ + ] Karakter iskelet ve kutu algoritmaları güçlendirildi"
+UpdateDesc.Text = "[ + ] Script Koruması Aktif\n" ..
+                "[ + ] Hile Foksiyonları Bypass Edildi\n" ..
+                "[ + ] Yenilenmiş Modern Kart Tasarımları\n" ..
+                "[ + ] Güvenlik Kontrolleri Sürekli Aktif"
 UpdateDesc.TextColor3 = Color3.fromRGB(220, 225, 240)
 UpdateDesc.TextSize = 11
 UpdateDesc.Font = Enum.Font.GothamMedium
@@ -406,12 +459,12 @@ UpdateDesc.TextWrapped = true
 UpdateDesc.Parent = UpdateLogScreen
 
 local UpdateDescCorner = Instance.new("UICorner")
-UpdateDescCorner.CornerRadius = UDim.new(0, 8)
+UpdateDescCorner.CornerRadius = UDim.new(0, 10)
 UpdateDescCorner.Parent = UpdateDesc
 
 local UpdateNextBtn = Instance.new("TextButton")
-UpdateNextBtn.Size = UDim2.new(1, -40, 0, 38)
-UpdateNextBtn.Position = UDim2.new(0, 20, 0, 215)
+UpdateNextBtn.Size = UDim2.new(1, -44, 0, 40)
+UpdateNextBtn.Position = UDim2.new(0, 22, 0, 220)
 UpdateNextBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 UpdateNextBtn.BorderSizePixel = 0
 UpdateNextBtn.Text = "Devam Et"
@@ -421,12 +474,12 @@ UpdateNextBtn.Font = Enum.Font.GothamBold
 UpdateNextBtn.Parent = UpdateLogScreen
 
 local UpdateNextCorner = Instance.new("UICorner")
-UpdateNextCorner.CornerRadius = UDim.new(0, 8)
+UpdateNextCorner.CornerRadius = UDim.new(0, 10)
 UpdateNextCorner.Parent = UpdateNextBtn
 
 local KeyScreen = Instance.new("Frame")
-KeyScreen.Size = UDim2.new(0, 320, 0, 200)
-KeyScreen.Position = UDim2.new(0.5, -160, 0.5, -100)
+KeyScreen.Size = UDim2.new(0, 340, 0, 210)
+KeyScreen.Position = UDim2.new(0.5, -170, 0.5, -105)
 KeyScreen.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 KeyScreen.BorderSizePixel = 0
 KeyScreen.Active = true
@@ -435,30 +488,30 @@ KeyScreen.Visible = false
 KeyScreen.Parent = ScreenGui
 
 local KeyCorner = Instance.new("UICorner")
-KeyCorner.CornerRadius = UDim.new(0, 14)
+KeyCorner.CornerRadius = UDim.new(0, 16)
 KeyCorner.Parent = KeyScreen
 
 local KeyStroke = Instance.new("UIStroke")
 KeyStroke.Color = Color3.fromRGB(140, 60, 220)
-KeyStroke.Thickness = 1.8
+KeyStroke.Thickness = 2
 KeyStroke.Parent = KeyScreen
 
 local KeyTitle = Instance.new("TextLabel")
-KeyTitle.Size = UDim2.new(1, 0, 0, 40)
+KeyTitle.Size = UDim2.new(1, 0, 0, 45)
 KeyTitle.Position = UDim2.new(0, 0, 0, 15)
 KeyTitle.BackgroundTransparency = 1
-KeyTitle.Text = "🔑 AstraOS - Key Sistemi"
+KeyTitle.Text = "🔑 " .. HUB_NAME .. " - Key Sistemi"
 KeyTitle.TextColor3 = Color3.fromRGB(245, 245, 255)
 KeyTitle.TextSize = 14
 KeyTitle.Font = Enum.Font.GothamBold
 KeyTitle.Parent = KeyScreen
 
 local KeyBox = Instance.new("TextBox")
-KeyBox.Size = UDim2.new(1, -40, 0, 40)
-KeyBox.Position = UDim2.new(0, 20, 0, 65)
+KeyBox.Size = UDim2.new(1, -44, 0, 42)
+KeyBox.Position = UDim2.new(0, 22, 0, 70)
 KeyBox.BackgroundColor3 = Color3.fromRGB(17, 18, 27)
 KeyBox.BorderSizePixel = 0
-KeyBox.PlaceholderText = "Hile Keyini Girin (Örn: OS BEST)"
+KeyBox.PlaceholderText = "Hile Key ('OS BEST')"
 KeyBox.PlaceholderColor3 = Color3.fromRGB(110, 110, 140)
 KeyBox.Text = ""
 KeyBox.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -467,12 +520,12 @@ KeyBox.Font = Enum.Font.GothamMedium
 KeyBox.Parent = KeyScreen
 
 local BoxCorner = Instance.new("UICorner")
-BoxCorner.CornerRadius = UDim.new(0, 8)
+BoxCorner.CornerRadius = UDim.new(0, 10)
 BoxCorner.Parent = KeyBox
 
 local LoginBtn = Instance.new("TextButton")
-LoginBtn.Size = UDim2.new(1, -40, 0, 38)
-LoginBtn.Position = UDim2.new(0, 20, 0, 125)
+LoginBtn.Size = UDim2.new(1, -44, 0, 40)
+LoginBtn.Position = UDim2.new(0, 22, 0, 130)
 LoginBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 LoginBtn.BorderSizePixel = 0
 LoginBtn.Text = "Giriş Yap"
@@ -482,12 +535,12 @@ LoginBtn.Font = Enum.Font.GothamBold
 LoginBtn.Parent = KeyScreen
 
 local BtnCorner = Instance.new("UICorner")
-BtnCorner.CornerRadius = UDim.new(0, 8)
+BtnCorner.CornerRadius = UDim.new(0, 10)
 BtnCorner.Parent = LoginBtn
 
 local StatusLabel = Instance.new("TextLabel")
 StatusLabel.Size = UDim2.new(1, 0, 0, 20)
-StatusLabel.Position = UDim2.new(0, 0, 0, 170)
+StatusLabel.Position = UDim2.new(0, 0, 0, 180)
 StatusLabel.BackgroundTransparency = 1
 StatusLabel.Text = ""
 StatusLabel.TextColor3 = Color3.fromRGB(255, 90, 90)
@@ -496,35 +549,35 @@ StatusLabel.Font = Enum.Font.Gotham
 StatusLabel.Parent = KeyScreen
 
 local ModeScreen = Instance.new("Frame")
-ModeScreen.Size = UDim2.new(0, 340, 0, 180)
-ModeScreen.Position = UDim2.new(0.5, -170, 0.5, -90)
+ModeScreen.Size = UDim2.new(0, 350, 0, 190)
+ModeScreen.Position = UDim2.new(0.5, -175, 0.5, -95)
 ModeScreen.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 ModeScreen.BorderSizePixel = 0
 ModeScreen.Visible = false
 ModeScreen.Parent = ScreenGui
 
 local ModeCorner = Instance.new("UICorner")
-ModeCorner.CornerRadius = UDim.new(0, 14)
+ModeCorner.CornerRadius = UDim.new(0, 16)
 ModeCorner.Parent = ModeScreen
 
 local ModeStroke = Instance.new("UIStroke")
 ModeStroke.Color = Color3.fromRGB(140, 60, 220)
-ModeStroke.Thickness = 1.8
+ModeStroke.Thickness = 2
 ModeStroke.Parent = ModeScreen
 
 local ModeTitle = Instance.new("TextLabel")
-ModeTitle.Size = UDim2.new(1, 0, 0, 40)
+ModeTitle.Size = UDim2.new(1, 0, 0, 45)
 ModeTitle.Position = UDim2.new(0, 0, 0, 15)
 ModeTitle.BackgroundTransparency = 1
-ModeTitle.Text = "Oynamak İstediğiniz Modu Seçin"
+ModeTitle.Text = HUB_NAME .. " - Oyun Modu Seçimi"
 ModeTitle.TextColor3 = Color3.fromRGB(245, 245, 255)
 ModeTitle.TextSize = 13
 ModeTitle.Font = Enum.Font.GothamBold
 ModeTitle.Parent = ModeScreen
 
 local LegitSelectBtn = Instance.new("TextButton")
-LegitSelectBtn.Size = UDim2.new(1, -40, 0, 45)
-LegitSelectBtn.Position = UDim2.new(0, 20, 0, 65)
+LegitSelectBtn.Size = UDim2.new(1, -44, 0, 44)
+LegitSelectBtn.Position = UDim2.new(0, 22, 0, 70)
 LegitSelectBtn.BackgroundColor3 = Color3.fromRGB(110, 40, 190)
 LegitSelectBtn.BorderSizePixel = 0
 LegitSelectBtn.Text = "🛡️ Legit Mod (Sağ Tık / Mobil Aimbot)"
@@ -534,12 +587,12 @@ LegitSelectBtn.Font = Enum.Font.GothamBold
 LegitSelectBtn.Parent = ModeScreen
 
 local LegitCorner = Instance.new("UICorner")
-LegitCorner.CornerRadius = UDim.new(0, 8)
+LegitCorner.CornerRadius = UDim.new(0, 10)
 LegitCorner.Parent = LegitSelectBtn
 
 local RageSelectBtn = Instance.new("TextButton")
-RageSelectBtn.Size = UDim2.new(1, -40, 0, 45)
-RageSelectBtn.Position = UDim2.new(0, 20, 0, 120)
+RageSelectBtn.Size = UDim2.new(1, -44, 0, 44)
+RageSelectBtn.Position = UDim2.new(0, 22, 0, 126)
 RageSelectBtn.BackgroundColor3 = Color3.fromRGB(70, 20, 110)
 RageSelectBtn.BorderSizePixel = 0
 RageSelectBtn.Text = "🔥 Rage Mod (360° Tam Kafa Otomatik Aim)"
@@ -549,39 +602,39 @@ RageSelectBtn.Font = Enum.Font.GothamBold
 RageSelectBtn.Parent = ModeScreen
 
 local RageCorner = Instance.new("UICorner")
-RageCorner.CornerRadius = UDim.new(0, 8)
+RageCorner.CornerRadius = UDim.new(0, 10)
 RageCorner.Parent = RageSelectBtn
 
 local LoadScreen = Instance.new("Frame")
-LoadScreen.Size = UDim2.new(0, 300, 0, 110)
-LoadScreen.Position = UDim2.new(0.5, -150, 0.5, -55)
+LoadScreen.Size = UDim2.new(0, 320, 0, 120)
+LoadScreen.Position = UDim2.new(0.5, -160, 0.5, -60)
 LoadScreen.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
 LoadScreen.BorderSizePixel = 0
 LoadScreen.Visible = false
 LoadScreen.Parent = ScreenGui
 
 local LoadCorner = Instance.new("UICorner")
-LoadCorner.CornerRadius = UDim.new(0, 14)
+LoadCorner.CornerRadius = UDim.new(0, 16)
 LoadCorner.Parent = LoadScreen
 
 local LoadStroke = Instance.new("UIStroke")
 LoadStroke.Color = Color3.fromRGB(140, 60, 220)
-LoadStroke.Thickness = 1.8
+LoadStroke.Thickness = 2
 LoadStroke.Parent = LoadScreen
 
 local LoadTitle = Instance.new("TextLabel")
-LoadTitle.Size = UDim2.new(1, 0, 0, 30)
+LoadTitle.Size = UDim2.new(1, 0, 0, 35)
 LoadTitle.Position = UDim2.new(0, 0, 0, 15)
 LoadTitle.BackgroundTransparency = 1
-LoadTitle.Text = "Sistem Yükleniyor..."
+LoadTitle.Text = HUB_NAME .. " Yükleniyor..."
 LoadTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadTitle.TextSize = 13
 LoadTitle.Font = Enum.Font.GothamBold
 LoadTitle.Parent = LoadScreen
 
 local LoadBarBack = Instance.new("Frame")
-LoadBarBack.Size = UDim2.new(1, -40, 0, 8)
-LoadBarBack.Position = UDim2.new(0, 20, 0, 60)
+LoadBarBack.Size = UDim2.new(1, -44, 0, 8)
+LoadBarBack.Position = UDim2.new(0, 22, 0, 65)
 LoadBarBack.BackgroundColor3 = Color3.fromRGB(28, 32, 45)
 LoadBarBack.BorderSizePixel = 0
 LoadBarBack.Parent = LoadScreen
@@ -602,7 +655,7 @@ FillCorner.Parent = LoadBarFill
 
 local PercentLabel = Instance.new("TextLabel")
 PercentLabel.Size = UDim2.new(1, 0, 0, 20)
-PercentLabel.Position = UDim2.new(0, 0, 0, 75)
+PercentLabel.Position = UDim2.new(0, 0, 0, 82)
 PercentLabel.BackgroundTransparency = 1
 PercentLabel.Text = "%0"
 PercentLabel.TextColor3 = Color3.fromRGB(150, 150, 180)
@@ -610,9 +663,9 @@ PercentLabel.TextSize = 10
 PercentLabel.Font = Enum.Font.GothamMedium
 PercentLabel.Parent = LoadScreen
 
--- ANA MENÜLER (Genişlik 560, Yükseklik 460 - Daha dar, dikeyde uzun oran)
+-- ANA MENÜLER
 local MainFrameRage = Instance.new("Frame")
-MainFrameRage.Name = "AstraMainFrameRage"
+MainFrameRage.Name = HUB_NAME .. "_MainRage"
 MainFrameRage.Size = UDim2.new(0, 560, 0, 460)
 MainFrameRage.Position = UDim2.new(0.5, -280, 0.5, -230)
 MainFrameRage.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
@@ -623,7 +676,7 @@ MainFrameRage.Visible = false
 MainFrameRage.Parent = ScreenGui
 
 local MainFrameLegit = Instance.new("Frame")
-MainFrameLegit.Name = "AstraMainFrameLegit"
+MainFrameLegit.Name = HUB_NAME .. "_MainLegit"
 MainFrameLegit.Size = UDim2.new(0, 560, 0, 460)
 MainFrameLegit.Position = UDim2.new(0.5, -280, 0.5, -230)
 MainFrameLegit.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
@@ -633,7 +686,6 @@ MainFrameLegit.Draggable = true
 MainFrameLegit.Visible = false
 MainFrameLegit.Parent = ScreenGui
 
--- Ayarlar Yapısı
 local settingsRage = {
     RageLock = true,
     Full360Aimbot = true,
@@ -842,7 +894,7 @@ local function monitorPlayerDeath(player)
             humanoid.Died:Connect(function()
                 if isScriptLoaded then
                     pcall(function() killSound:Play() end)
-                    showKillNotification(player.Name, "AstraOS Weapon")
+                    showKillNotification(player.Name, HUB_NAME .. " Weapon")
                 end
             end)
         end
@@ -967,12 +1019,12 @@ startLoadingAndBuildUI = function(isRage)
         task.wait(0.3)
         
         local MainCorner = Instance.new("UICorner")
-        MainCorner.CornerRadius = UDim.new(0, 14)
+        MainCorner.CornerRadius = UDim.new(0, 16)
         MainCorner.Parent = targetFrame
 
         local MainStroke = Instance.new("UIStroke")
         MainStroke.Color = Color3.fromRGB(100, 40, 160)
-        MainStroke.Thickness = 1.8
+        MainStroke.Thickness = 2
         MainStroke.Parent = targetFrame
 
         targetFrame.BackgroundColor3 = Color3.fromRGB(12, 12, 18)
@@ -984,7 +1036,7 @@ startLoadingAndBuildUI = function(isRage)
         TopBar.Parent = targetFrame
 
         local TopCorner = Instance.new("UICorner")
-        TopCorner.CornerRadius = UDim.new(0, 14)
+        TopCorner.CornerRadius = UDim.new(0, 16)
         TopCorner.Parent = TopBar
 
         local TopFix = Instance.new("Frame")
@@ -999,7 +1051,7 @@ startLoadingAndBuildUI = function(isRage)
         Title.Position = UDim2.new(0, 18, 0, 0)
         Title.BackgroundTransparency = 1
         Title.RichText = true
-        Title.Text = isRage and "⚡ ASTRA OS <font color='#A040FF'>// Rage Suite</font>" or "⚡ ASTRA OS <font color='#B060FF'>// Legit Suite</font>"
+        Title.Text = isRage and "⚡ " .. HUB_NAME .. " <font color='#A040FF'>// Rage Suite</font>" or "⚡ " .. HUB_NAME .. " <font color='#B060FF'>// Legit Suite</font>"
         Title.TextColor3 = Color3.fromRGB(245, 245, 255)
         Title.TextSize = 13
         Title.Font = Enum.Font.GothamBold
@@ -1025,7 +1077,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1058,7 +1110,7 @@ startLoadingAndBuildUI = function(isRage)
             WlBox.Parent = Card
 
             local BoxCorner = Instance.new("UICorner")
-            BoxCorner.CornerRadius = UDim.new(0, 6)
+            BoxCorner.CornerRadius = UDim.new(0, 8)
             BoxCorner.Parent = WlBox
 
             local AddBtn = Instance.new("TextButton")
@@ -1073,7 +1125,7 @@ startLoadingAndBuildUI = function(isRage)
             AddBtn.Parent = Card
 
             local AddCorner = Instance.new("UICorner")
-            AddCorner.CornerRadius = UDim.new(0, 6)
+            AddCorner.CornerRadius = UDim.new(0, 8)
             AddCorner.Parent = AddBtn
 
             local RemoveBtn = Instance.new("TextButton")
@@ -1088,7 +1140,7 @@ startLoadingAndBuildUI = function(isRage)
             RemoveBtn.Parent = Card
 
             local RemCorner = Instance.new("UICorner")
-            RemCorner.CornerRadius = UDim.new(0, 6)
+            RemCorner.CornerRadius = UDim.new(0, 8)
             RemCorner.Parent = RemoveBtn
 
             AddBtn.MouseButton1Click:Connect(function()
@@ -1138,7 +1190,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1181,7 +1233,7 @@ startLoadingAndBuildUI = function(isRage)
                 BindBtn.Parent = Card
 
                 local BindCorner = Instance.new("UICorner")
-                BindCorner.CornerRadius = UDim.new(0, 6)
+                BindCorner.CornerRadius = UDim.new(0, 8)
                 BindCorner.Parent = BindBtn
 
                 BindBtn.MouseButton1Click:Connect(function()
@@ -1216,7 +1268,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1236,7 +1288,7 @@ startLoadingAndBuildUI = function(isRage)
             SwitchBtn.Parent = Card
 
             local SwitchCorner = Instance.new("UICorner")
-            SwitchCorner.CornerRadius = UDim.new(0, 6)
+            SwitchCorner.CornerRadius = UDim.new(0, 8)
             SwitchCorner.Parent = SwitchBtn
 
             SwitchBtn.MouseButton1Click:Connect(function()
@@ -1260,7 +1312,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1280,7 +1332,7 @@ startLoadingAndBuildUI = function(isRage)
             UnloadBtn.Parent = Card
 
             local UnloadCorner = Instance.new("UICorner")
-            UnloadCorner.CornerRadius = UDim.new(0, 6)
+            UnloadCorner.CornerRadius = UDim.new(0, 8)
             UnloadCorner.Parent = UnloadBtn
 
             UnloadBtn.MouseButton1Click:Connect(function()
@@ -1288,7 +1340,6 @@ startLoadingAndBuildUI = function(isRage)
             end)
         end
 
-        -- Sidebar ve İçerik Alanı (Daraltılmış yatay boyut için optimize edildi)
         local Sidebar = Instance.new("Frame")
         Sidebar.Size = UDim2.new(0, 130, 1, -65)
         Sidebar.Position = UDim2.new(0, 10, 0, 56)
@@ -1297,7 +1348,7 @@ startLoadingAndBuildUI = function(isRage)
         Sidebar.Parent = targetFrame
 
         local SideCorner = Instance.new("UICorner")
-        SideCorner.CornerRadius = UDim.new(0, 10)
+        SideCorner.CornerRadius = UDim.new(0, 12)
         SideCorner.Parent = Sidebar
 
         local SideStroke = Instance.new("UIStroke")
@@ -1361,7 +1412,7 @@ startLoadingAndBuildUI = function(isRage)
             btn.Parent = Sidebar
 
             local corner = Instance.new("UICorner")
-            corner.CornerRadius = UDim.new(0, 8)
+            corner.CornerRadius = UDim.new(0, 10)
             corner.Parent = btn
 
             btn.MouseButton1Click:Connect(function()
@@ -1383,7 +1434,7 @@ startLoadingAndBuildUI = function(isRage)
             createTabButton("🏃 Movement", "Movement")
         end
         createTabButton("⚡ Diğer (Misc)", "Misc")
-        createTabButton("⚙️ Ayarlar", "Settings")
+        createTabButton("⚙️️ Ayarlar", "Settings")
 
         local function createToggle(parentPage, name, settingKey)
             local targetSettings = isRage and settingsRage or settingsLegit
@@ -1394,7 +1445,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1422,7 +1473,7 @@ startLoadingAndBuildUI = function(isRage)
             ToggleBtn.Parent = Card
 
             local BtnCorner = Instance.new("UICorner")
-            BtnCorner.CornerRadius = UDim.new(0, 6)
+            BtnCorner.CornerRadius = UDim.new(0, 8)
             BtnCorner.Parent = ToggleBtn
 
             local function updateVisual()
@@ -1454,7 +1505,7 @@ startLoadingAndBuildUI = function(isRage)
             Card.Parent = parentPage
 
             local Corner = Instance.new("UICorner")
-            Corner.CornerRadius = UDim.new(0, 8)
+            Corner.CornerRadius = UDim.new(0, 10)
             Corner.Parent = Card
 
             local Stroke = Instance.new("UIStroke")
@@ -1645,10 +1696,10 @@ RunService.RenderStepped:Connect(function()
             end
 
             if settingsRage.Fly and hrp then
-                local bv = hrp:FindFirstChild("AstraFlyVelocity")
+                local bv = hrp:FindFirstChild(HUB_NAME .. "FlyVelocity")
                 if not bv then
                     bv = Instance.new("BodyVelocity")
-                    bv.Name = "AstraFlyVelocity"
+                    bv.Name = HUB_NAME .. "FlyVelocity"
                     bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
                     bv.Velocity = Vector3.new(0, 0, 0)
                     bv.Parent = hrp
@@ -1657,7 +1708,7 @@ RunService.RenderStepped:Connect(function()
                 bv.Velocity = Vector3.new(moveDir.X, 0, moveDir.Z)
             else
                 if hrp then
-                    local bv = hrp:FindFirstChild("AstraFlyVelocity")
+                    local bv = hrp:FindFirstChild(HUB_NAME .. "FlyVelocity")
                     if bv then bv:Destroy() end
                 end
             end
@@ -1750,12 +1801,12 @@ RunService.RenderStepped:Connect(function()
         if player ~= LocalPlayer and player.Character then
             local isValid = isValidTarget(player)
             local chamsAct = activeSettings and activeSettings.Chams and isValid
-            local highlight = player.Character:FindFirstChild("AstraChams")
+            local highlight = player.Character:FindFirstChild(HUB_NAME .. "Chams")
 
             if chamsAct then
                 if not highlight then
                     highlight = Instance.new("Highlight")
-                    highlight.Name = "AstraChams"
+                    highlight.Name = HUB_NAME .. "Chams"
                     highlight.FillColor = dynamicColor
                     highlight.OutlineColor = Color3.fromRGB(220, 180, 255)
                     highlight.FillTransparency = 0.5
@@ -1844,7 +1895,6 @@ RunService.RenderStepped:Connect(function()
         else line.Visible = false end
     end
 
-    -- İyileştirilmiş ve optimize edilmiş Skeleton (İskelet) Sistemi
     for player, bones in pairs(activeSkeletons) do
         local char = player.Character
         local humanoid = char and char:FindFirstChildOfClass("Humanoid")
@@ -1908,17 +1958,5 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
-print("AstraOS Cheat Hazır")
-print("AstraOS On Top!")
-print("Eğerki Bu Scripti Kopyalamaya Çalıştıysan Bedava Hesap İçin Teşşekkürler!")
-print("Çünkü Hesabını Ortak Kullanmaya Başliyacağız :)")
-print("Şifreni Değiştirmene Gerek Yok Hala Elimde 1 Kere Çalıştırdın Zaten İyi Şanslar Ve İyi Format Atmalar")
-print("Cihazına Sızdım Bilgisayar Telefon Tablet Fark Etmez Cihazın Artık Elimde ADFAHGSDSAHPJ")
-print("Birde Koruma Normal Hile Sistemleriyle Bir Çalışıyor Silersen Hilede Çalışmaz Kendin Ekleme Yaparsan Yine Çalışmaz Ama Bulabilcen Mi Tabikide Hayır")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
-print("AstraOS On Top!")
+print(HUB_NAME .. " Cheat Suite Hazır!")
+print(HUB_NAME .. " On Top!")
